@@ -10,14 +10,14 @@ package tictactoe;
  * @author matts_000
  */
 public class Tictactoe {
-    Board[][] boards;
+    Board[] boards;
     
     public Tictactoe(){
-        boards = new Board[3][3];
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                boards[col][row] = new Board();
-            }
+        boards = new Board[9];
+        for (int boardNum = 0; boardNum < 3; boardNum++) {
+            
+            boards[boardNum] = new Board();
+            
         }
     }
     
