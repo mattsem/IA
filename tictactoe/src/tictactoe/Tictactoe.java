@@ -12,6 +12,7 @@ package tictactoe;
 public class Tictactoe {
     Board[] boards;
     int boardIndex;
+    int player;
     
     public Tictactoe(){
         boards = new Board[9];
@@ -33,7 +34,7 @@ public class Tictactoe {
     
     public void printTictactoe(){
         for (int  boardIndex = 0; boardIndex < 9; boardIndex++) {
-            
+            boards[boardIndex].print();
         }
     }
     
