@@ -10,18 +10,18 @@ package tictactoe;
  * @author matts_000
  */
 public class Board {
-    char[][] boardState;
+    char[] boardState;
     
     public Board(){
-        boardState = new char[3][3];
+        boardState = new char[9];
         reset();
     }
     
     public void reset(){
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                boardState[col][row] = ' ';
-            }
+        for (int space = 0; space < 9; space++) {
+            
+                boardState[space] = ' ';
+            
         }
     }
     
@@ -35,12 +35,12 @@ public class Board {
         }
     }
     
-    public void printRow(int row){
-        System.out.print(boardState[0][row]);
+    public void printRow(int space){
+        System.out.print(boardState[space*3]);
         System.out.print("|");
-        System.out.print(boardState[1][row]);
+        System.out.print(boardState[1+(space*3)]);
         System.out.print("|");
-        System.out.println(boardState[2][row]);
+        System.out.println(boardState[2+(space*3)]);
         
     }
     public void printLine(){

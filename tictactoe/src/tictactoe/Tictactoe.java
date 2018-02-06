@@ -11,12 +11,13 @@ package tictactoe;
  */
 public class Tictactoe {
     Board[] boards;
+    int boardIndex;
     
     public Tictactoe(){
         boards = new Board[9];
-        for (int boardNum = 0; boardNum < 3; boardNum++) {
+        for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
             
-            boards[boardNum] = new Board();
+            boards[boardIndex] = new Board();
             
         }
     }
@@ -24,10 +25,17 @@ public class Tictactoe {
     public void start(){
         boolean done = false;
         while(done == false){
-            
+            printTictactoe();
+            done = true;
         }
     }
     
+    
+    public void printTictactoe(){
+        for (int  boardIndex = 0; boardIndex < 9; boardIndex++) {
+            
+        }
+    }
     
     
     /**
