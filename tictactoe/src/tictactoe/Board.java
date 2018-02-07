@@ -18,9 +18,9 @@ public class Board {
     }
     
     public void reset(){
-        for (int space = 0; space < 9; space++) {
+        for (int boardPlace = 0; boardPlace < 9; boardPlace++) {
             
-                boardState[space] = ' ';
+                boardState[boardPlace] = ' ';
             
         }
     }
@@ -35,12 +35,12 @@ public class Board {
         }
     }
     
-    public void printRow(int space){
-        System.out.print(boardState[space*3]);
+    public void printRow(int row){
+        System.out.print(boardState[row*3]);
         System.out.print("|");
-        System.out.print(boardState[1+(space*3)]);
+        System.out.print(boardState[1+(row*3)]);
         System.out.print("|");
-        System.out.println(boardState[2+(space*3)]);
+        System.out.println(boardState[2+(row*3)]);
         
     }
     public void printLine(){

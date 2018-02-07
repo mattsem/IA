@@ -4,38 +4,58 @@
  * and open the template in the editor.
  */
 package tictactoe;
-
+import java.util.*;
 /**
  *
  * @author matts_000
  */
 public class Tictactoe {
-    Board[] boards;
+    Board[] globalBoard;
     int boardIndex;
-    int player;
+    char player;
     
     public Tictactoe(){
-        boards = new Board[9];
+        globalBoard = new Board[9];
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
             
-            boards[boardIndex] = new Board();
+            globalBoard[boardIndex] = new Board();
             
         }
     }
     
     public void start(){
         boolean done = false;
+        System.out.println("Welcome to Ultimate Tictactoe!");
+        player ='x';
+        printTictactoe();
         while(done == false){
+            move();
             printTictactoe();
-            done = true;
+            switchPlayer();
+            
         }
     }
     
     
     public void printTictactoe(){
         for (int  boardIndex = 0; boardIndex < 9; boardIndex++) {
-            boards[boardIndex].print();
+            globalBoard[boardIndex].print();
         }
+    }
+    
+    public void switchPlayer(){
+        if(player == 'x'){
+            player = 'o';
+        }
+        if(player =='o'){
+            player = 'x';
+        }
+    }
+    
+    public void move(){
+        System.out.println("Where would you like to move?");
+        Scanner sc = new Scanner(System.in);
+        globalBoard[sc.nextInt()].boardState[sc.nextInt()] = player;
     }
     
     
