@@ -55,7 +55,15 @@ public class Tictactoe {
     public void move(){
         System.out.println("Where would you like to move?");
         Scanner sc = new Scanner(System.in);
-        globalBoard[sc.nextInt()].boardState[sc.nextInt()] = player;
+        int localBoard = sc.nextInt();
+        int localBoardSpace = sc.nextInt();
+        if(globalBoard[localBoard].boardState[localBoardSpace] == ' '){
+            globalBoard[localBoard].boardState[localBoardSpace] = player;  
+        }
+        else{
+            System.out.println("Incalied move");
+        }
+        
     }
     
     
