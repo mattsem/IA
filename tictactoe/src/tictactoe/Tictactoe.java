@@ -31,6 +31,7 @@ public class Tictactoe {
         while(done == false){
             move();
             printTictactoe();
+            checkWin();
             switchPlayer();
             
         }
@@ -64,6 +65,12 @@ public class Tictactoe {
             System.out.println("Incalied move");
         }
         
+    }
+    
+    public void checkWin(){
+        for (int board = 0; board < 9; board++) {
+            globalBoard[board].checkBoardWin();
+        }
     }
     
     

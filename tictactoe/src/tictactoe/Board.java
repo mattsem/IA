@@ -46,4 +46,19 @@ public class Board {
     public void printLine(){
         System.out.println("-+-+-");
     }
+    public void checkBoardWin(){
+        checkHorizontal();
+        checkVertical();
+        checkDiagonal();
+    }
+    
+    public void checkHorizontal(){
+        
+    }
+    public void checkVertical(){
+        
+    }
+    public void checkDiagonal(){
+        
+    }
 }
