@@ -51,9 +51,12 @@ public class Tictactoe {
     public void switchPlayer(){
         if(player == 'x'){
             player = 'o';
+            return;
         }
+        
         if(player =='o'){
             player = 'x';
+            return;
         }
     }
     
