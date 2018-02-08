@@ -46,19 +46,60 @@ public class Board {
     public void printLine(){
         System.out.println("-+-+-");
     }
-    public void checkBoardWin(){
-        checkHorizontal();
-        checkVertical();
-        checkDiagonal();
+    public boolean checkBoardWin(){
+        boolean boardWin = false;
+        if(checkHorizontal() == true)
+            boardWin = true;
+        if(checkVertical() == true)
+            boardWin = true;
+        if(checkDiagonal() == true)
+            boardWin = true;
+        return boardWin;
     }
     
-    public void checkHorizontal(){
+    public boolean checkHorizontal(){
+        boolean rowWin = false;
+        for (int row = 0; row < 3; row++) {
+            if(boardState[3*row]=='x' && boardState[3*row+1]=='x' && boardState[3*row+2]=='x'){
+                rowWin=true;   
+            }
+        }
+        for (int row = 0; row < 3; row++) {
+            if(boardState[3*row]=='o' && boardState[3*row+1]=='o' && boardState[3*row+2]=='o'){
+                rowWin=true;   
+            }
+        }
         
+        return rowWin;
     }
-    public void checkVertical(){
-        
+    public boolean checkVertical(){
+        boolean columnWin = false;
+        for (int col = 0; col < 3; col++) {
+            if(boardState[col]=='x' && boardState[col+3]=='x' && boardState[col+6]=='x'){
+                columnWin = true;
+            }
+        }
+        for (int col = 0; col < 3; col++) {
+            if(boardState[col]=='o' && boardState[col+3]=='o' && boardState[col+6]=='o'){
+                columnWin = true;
+            }
+        }
+        return columnWin;
     }
-    public void checkDiagonal(){
-        
+    public boolean checkDiagonal(){
+        boolean diagWin =false;
+        if(boardState[0] =='x' && boardState[4] =='x'&& boardState[8] =='x'){
+            diagWin = true;
+        }
+        if(boardState[0] =='o' && boardState[4] =='o'&& boardState[8] =='o'){
+            diagWin = true;
+        }
+        if(boardState[2] =='x' && boardState[4] =='x'&& boardState[6] =='x'){
+            diagWin = true;
+        }
+        if(boardState[2] =='o' && boardState[4] =='o'&& boardState[6] =='o'){
+            diagWin = true;
+        }
+        return diagWin;
     }
 }

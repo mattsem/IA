@@ -31,7 +31,11 @@ public class Tictactoe {
         while(done == false){
             move();
             printTictactoe();
-            checkWin();
+            if(checkWin()==true){
+               done = true;
+                System.out.println("Congrats!");
+            }
+            
             switchPlayer();
             
         }
@@ -62,15 +66,20 @@ public class Tictactoe {
             globalBoard[localBoard].boardState[localBoardSpace] = player;  
         }
         else{
-            System.out.println("Incalied move");
+            System.out.println("Invalid move");
         }
         
     }
     
-    public void checkWin(){
+    public boolean checkWin(){
+        boolean globalWin = false;
         for (int board = 0; board < 9; board++) {
-            globalBoard[board].checkBoardWin();
+            if(globalBoard[board].checkBoardWin() == true){
+               globalWin = true; 
+            }
+            
         }
+        return globalWin;
     }
     
     
