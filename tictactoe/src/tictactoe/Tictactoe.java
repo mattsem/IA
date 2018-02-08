@@ -31,9 +31,13 @@ public class Tictactoe {
         while(done == false){
             move();
             printTictactoe();
-            if(checkWin()==true){
-               done = true;
-                System.out.println("Congrats!");
+            if(checkWin()== 'x'){
+                done = true;
+                System.out.println("Congrats x!");
+            }
+            if(checkWin()== 'o'){
+                done = true;
+                System.out.println("Congrats o!");
             }
             
             switchPlayer();
@@ -74,16 +78,74 @@ public class Tictactoe {
         
     }
     
-    public boolean checkWin(){
-        boolean globalWin = false;
-        for (int board = 0; board < 9; board++) {
-            if(globalBoard[board].checkBoardWin() == true){
-               globalWin = true; 
-            }
-            
-        }
+    public char checkWin(){
+        char globalWin = ' ';
+        if(horizontalGlobalWin() == 'x')
+            globalWin = 'x';
+        if(horizontalGlobalWin() == 'o')
+            globalWin = 'o';
+        
+        if(verticalGlobalWin() == 'x')
+            globalWin = 'x';
+        if(verticalGlobalWin() == 'o')
+            globalWin = 'o';
+        
+        if(diagGlobalWin() == 'x')
+            globalWin = 'x';
+        if(diagGlobalWin() == 'o')
+            globalWin = 'o';
         return globalWin;
     }
+    
+    public char verticalGlobalWin(){
+        char vertGlobalWin = ' ';
+        for (int col = 0; col < 3; col++) {
+            if(globalBoard[col].checkBoardWin() == 'x' && globalBoard[col+3].checkBoardWin() == 'x' && globalBoard[col+6].checkBoardWin() =='x'){
+                vertGlobalWin='x';   
+            }
+        }
+        for (int col = 0; col < 3; col++) {
+            if(globalBoard[col].checkBoardWin()=='o' && globalBoard[col+3].checkBoardWin()=='o' && globalBoard[col+6].checkBoardWin()=='o'){
+                vertGlobalWin='o';   
+            } 
+        }
+        return vertGlobalWin;
+    }
+    
+    public char horizontalGlobalWin(){
+        char horGlobalWin = ' ';
+        for (int row = 0; row < 3; row++) {
+            if(globalBoard[3*row].checkBoardWin() == 'x' && globalBoard[3*row+1].checkBoardWin() == 'x' && globalBoard[3*row+2].checkBoardWin() =='x'){
+                horGlobalWin='x';   
+            }
+        }
+        for (int row = 0; row < 3; row++) {
+            if(globalBoard[3*row].checkBoardWin()=='o' && globalBoard[3*row+1].checkBoardWin()=='o' && globalBoard[3*row+2].checkBoardWin()=='o'){
+                horGlobalWin='o';   
+            } 
+        }
+        return horGlobalWin;
+    }
+    
+    public char diagGlobalWin(){
+        char diagGlobalWin = ' ';
+        if(globalBoard[0].checkBoardWin() =='x' && globalBoard[4].checkBoardWin() =='x'&& globalBoard[8].checkBoardWin() =='x'){
+            diagGlobalWin = 'x';
+        }
+        if(globalBoard[0].checkBoardWin() =='o' && globalBoard[4].checkBoardWin() =='o'&& globalBoard[8].checkBoardWin() =='o'){
+            diagGlobalWin = 'o';
+        }
+        if(globalBoard[2].checkBoardWin() =='x' && globalBoard[4].checkBoardWin() =='x'&& globalBoard[6].checkBoardWin() =='x'){
+            diagGlobalWin = 'x';
+        }
+        if(globalBoard[2].checkBoardWin() =='o' && globalBoard[4].checkBoardWin() =='o'&& globalBoard[6].checkBoardWin() =='o'){
+            diagGlobalWin = 'o';
+        }
+        
+        return diagGlobalWin;
+        
+    }
+    
     
     
     /**

@@ -46,59 +46,67 @@ public class Board {
     public void printLine(){
         System.out.println("-+-+-");
     }
-    public boolean checkBoardWin(){
-        boolean boardWin = false;
-        if(checkHorizontal() == true)
-            boardWin = true;
-        if(checkVertical() == true)
-            boardWin = true;
-        if(checkDiagonal() == true)
-            boardWin = true;
+    public char checkBoardWin(){
+        char boardWin = ' ';
+        if(checkHorizontal() == 'x')
+            boardWin = 'x';
+        if(checkHorizontal() == 'o')
+            boardWin = 'o';
+        
+        if(checkVertical() == 'x')
+            boardWin = 'x';
+        if(checkVertical() == 'o')
+            boardWin = 'o';
+        
+        if(checkDiagonal() == 'x')
+            boardWin = 'x';
+        if(checkDiagonal() == 'o')
+            boardWin = 'o';
         return boardWin;
     }
     
-    public boolean checkHorizontal(){
-        boolean rowWin = false;
+    public char checkHorizontal(){
+        char rowWin = ' ';
         for (int row = 0; row < 3; row++) {
             if(boardState[3*row]=='x' && boardState[3*row+1]=='x' && boardState[3*row+2]=='x'){
-                rowWin=true;   
+                rowWin='x';   
             }
         }
         for (int row = 0; row < 3; row++) {
             if(boardState[3*row]=='o' && boardState[3*row+1]=='o' && boardState[3*row+2]=='o'){
-                rowWin=true;   
+                rowWin='o';   
             }
         }
         
         return rowWin;
     }
-    public boolean checkVertical(){
-        boolean columnWin = false;
+    public char checkVertical(){
+        char columnWin = ' ';
         for (int col = 0; col < 3; col++) {
             if(boardState[col]=='x' && boardState[col+3]=='x' && boardState[col+6]=='x'){
-                columnWin = true;
+                columnWin = 'x';
             }
         }
         for (int col = 0; col < 3; col++) {
             if(boardState[col]=='o' && boardState[col+3]=='o' && boardState[col+6]=='o'){
-                columnWin = true;
+                columnWin = 'o';
             }
         }
         return columnWin;
     }
-    public boolean checkDiagonal(){
-        boolean diagWin =false;
+    public char checkDiagonal(){
+        char diagWin =' ';
         if(boardState[0] =='x' && boardState[4] =='x'&& boardState[8] =='x'){
-            diagWin = true;
+            diagWin = 'x';
         }
         if(boardState[0] =='o' && boardState[4] =='o'&& boardState[8] =='o'){
-            diagWin = true;
+            diagWin = 'o';
         }
         if(boardState[2] =='x' && boardState[4] =='x'&& boardState[6] =='x'){
-            diagWin = true;
+            diagWin = 'x';
         }
         if(boardState[2] =='o' && boardState[4] =='o'&& boardState[6] =='o'){
-            diagWin = true;
+            diagWin = 'o';
         }
         return diagWin;
     }
