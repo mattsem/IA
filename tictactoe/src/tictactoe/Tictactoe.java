@@ -40,7 +40,7 @@ public class Tictactoe {
                 System.out.println("Congrats o!");
             }
             
-            switchPlayer();
+            
             
         }
     }
@@ -70,13 +70,16 @@ public class Tictactoe {
         int localBoard = sc.nextInt();
         int localBoardSpace = sc.nextInt();
         if(globalBoard[localBoard].boardState[localBoardSpace] == ' '){
-            globalBoard[localBoard].boardState[localBoardSpace] = player;  
+            globalBoard[localBoard].boardState[localBoardSpace] = player; 
+            switchPlayer();
         }
         else{
             System.out.println("Invalid move");
         }
         
     }
+    
+    
     
     public char checkWin(){
         char globalWin = ' ';
