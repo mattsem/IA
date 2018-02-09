@@ -69,7 +69,7 @@ public class Tictactoe {
         Scanner sc = new Scanner(System.in);
         int localBoard = sc.nextInt();
         int localBoardSpace = sc.nextInt();
-        if(globalBoard[localBoard].boardState[localBoardSpace] == ' '){
+        if(globalBoard[localBoard].validMove(localBoardSpace) == true){
             globalBoard[localBoard].boardState[localBoardSpace] = player; 
             switchPlayer();
         }
@@ -148,6 +148,8 @@ public class Tictactoe {
         return diagGlobalWin;
         
     }
+    
+    
     
     
     

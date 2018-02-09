@@ -48,21 +48,39 @@ public class Board {
     }
     public char checkBoardWin(){
         char boardWin = ' ';
-        if(checkHorizontal() == 'x')
+        if(checkHorizontal() == 'x'){
             boardWin = 'x';
-        if(checkHorizontal() == 'o')
+        }
+        if(checkHorizontal() == 'o'){
             boardWin = 'o';
+        }
+        if(checkVertical() == 'x'){
+            boardWin = 'x';
+        }
+        if(checkVertical() == 'o'){
+            boardWin = 'o';
+        }
+        if(checkDiagonal() == 'x'){
+            boardWin = 'x';
+        }
+        if(checkDiagonal() == 'o'){
+            boardWin = 'o';
+        }
         
-        if(checkVertical() == 'x')
-            boardWin = 'x';
-        if(checkVertical() == 'o')
-            boardWin = 'o';
+        if(boardWin != ' '){
+            disableBoard(boardWin);
+        } 
         
-        if(checkDiagonal() == 'x')
-            boardWin = 'x';
-        if(checkDiagonal() == 'o')
-            boardWin = 'o';
+        
         return boardWin;
+    }
+    
+    public void disableBoard(char winner){
+        for (int boardPlace = 0; boardPlace < 9; boardPlace++) {
+            
+                boardState[boardPlace] = winner;
+            
+        }
     }
     
     public char checkHorizontal(){
@@ -109,5 +127,13 @@ public class Board {
             diagWin = 'o';
         }
         return diagWin;
+    }
+    
+    public boolean validMove(int boardSpace){
+        boolean valid = false;
+        if(boardState[boardSpace] == ' '){
+            valid = true;
+        }
+        return valid;
     }
 }
