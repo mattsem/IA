@@ -11,6 +11,7 @@ package tictactoe;
  */
 public class Board {
     char[] boardState;
+    boolean enabled;
     
     public Board(){
         boardState = new char[9];
@@ -18,6 +19,7 @@ public class Board {
     }
     
     public void reset(){
+        enabled = true;
         for (int boardPlace = 0; boardPlace < 9; boardPlace++) {
             
                 boardState[boardPlace] = ' ';
@@ -68,20 +70,17 @@ public class Board {
         }
         
         if(boardWin != ' '){
-            disableBoard(boardWin);
+            disableFinishedBoard(boardWin);
         } 
         
         
         return boardWin;
     }
     
-    public void disableBoard(char winner){
-        for (int boardPlace = 0; boardPlace < 9; boardPlace++) {
-            
-                boardState[boardPlace] = winner;
-            
-        }
+    public void disableFinishedBoard(char winner){
+        enabled = false;
     }
+    
     
     public char checkHorizontal(){
         char rowWin = ' ';
@@ -131,7 +130,7 @@ public class Board {
     
     public boolean validMove(int boardSpace){
         boolean valid = false;
-        if(boardState[boardSpace] == ' '){
+        if(boardState[boardSpace] == ' ' && enabled == true){
             valid = true;
         }
         return valid;
