@@ -79,6 +79,14 @@ public class Tictactoe {
         
     }
     
+    public void enableAllBoards(){
+        for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
+            if(globalBoard[boardIndex].finished == false){
+                globalBoard[boardIndex].enabled = true;
+            }
+            
+        }
+    }
     
     
     public char checkWin(){
