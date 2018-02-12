@@ -90,9 +90,13 @@ public class Tictactoe {
     }
 
     public void disableBoards(int enabledBoard) {
-        for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
-            if (boardIndex != enabledBoard) {
-                globalBoard[boardIndex].enabled = false;
+        if (globalBoard[enabledBoard].finished == true) {
+            enableAllBoards();
+        } else {
+            for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
+                if (boardIndex != enabledBoard) {
+                    globalBoard[boardIndex].enabled = false;
+                }
             }
         }
     }
