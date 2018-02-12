@@ -72,6 +72,8 @@ public class Tictactoe {
         if(globalBoard[localBoard].validMove(localBoardSpace) == true){
             globalBoard[localBoard].boardState[localBoardSpace] = player; 
             switchPlayer();
+            enableAllBoards();
+            disableBoards(localBoardSpace);
         }
         else{
             System.out.println("Invalid move");
@@ -85,6 +87,14 @@ public class Tictactoe {
                 globalBoard[boardIndex].enabled = true;
             }
             
+        }
+    }
+    
+    public void disableBoards(int enabledBoard){
+        for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
+            if(boardIndex != enabledBoard){
+                globalBoard[boardIndex].enabled = false;
+            }
         }
     }
     
