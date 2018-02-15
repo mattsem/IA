@@ -69,7 +69,7 @@ public class Tictactoe {
         Scanner sc = new Scanner(System.in);
         int localBoard = sc.nextInt();
         int localBoardSpace = sc.nextInt();
-        if (globalBoard[localBoard].validMove(localBoardSpace) == true) {
+        if (checkValidMove(localBoard,localBoardSpace) == true) {
             globalBoard[localBoard].boardState[localBoardSpace] = player;
             switchPlayer();
             enableAllBoards();
@@ -99,6 +99,15 @@ public class Tictactoe {
                 }
             }
         }
+    }
+    
+    public boolean checkValidMove(int board, int boardSpace){
+        boolean valid = false;
+        if(globalBoard[board].boardState[boardSpace] == ' ' && globalBoard[board].enabled == true && globalBoard[board].finished == false){
+            valid = true;
+        }
+        
+        return valid;
     }
 
     public char checkWin() {
