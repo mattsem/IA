@@ -131,11 +131,5 @@ public class Board {
         return diagWin;
     }
     
-//    public boolean validMove(int boardSpace){
-//        boolean valid = false;
-//        if(boardState[boardSpace] == ' ' && enabled == true){
-//            valid = true;
-//        }
-//        return valid;
-//    }
+
 }
