@@ -33,6 +33,11 @@ public class NewJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         onePlayerButton.setText("One-Player");
+        onePlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onePlayerButtonMouseClicked(evt);
+            }
+        });
         onePlayerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onePlayerButtonActionPerformed(evt);
@@ -40,6 +45,11 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         twoPlayerButton.setText("Two-Player");
+        twoPlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                twoPlayerButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +78,15 @@ public class NewJFrame extends javax.swing.JFrame {
     private void onePlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onePlayerButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onePlayerButtonActionPerformed
+
+    private void onePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onePlayerButtonMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_onePlayerButtonMouseClicked
+
+    private void twoPlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twoPlayerButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_twoPlayerButtonMouseClicked
 
     /**
      * @param args the command line arguments

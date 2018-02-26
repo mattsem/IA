@@ -28,9 +28,6 @@ public class Tictactoe {
 
     public void start() {
         boolean done = false;
-        
-        NewJFrame jf = new NewJFrame();
-        jf.setVisible(true);
    
         player = 'x';
         printTictactoe();
@@ -108,18 +105,7 @@ public class Tictactoe {
         }
     }
 
-//    public void disableBoards(int enabledBoard) {
-//        if (globalBoard[enabledBoard].finished == true) {
-//            enableAllBoards();
-//        } else {
-//            for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
-//                if (boardIndex != enabledBoard) {
-//                    globalBoard[boardIndex].enabled = false;
-//                }
-//            }
-//        }
-//    }
-    
+   
     public boolean checkValidMove(int board, int boardSpace){
         boolean valid = false;
         if(globalBoard[board].boardState[boardSpace] == ' ' && globalBoard[board].enabled == true && globalBoard[board].finished == false){
@@ -207,9 +193,13 @@ public class Tictactoe {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        NewJFrame jf = new NewJFrame();
+        jf.setVisible(true);
         
         Tictactoe tictactoe = new Tictactoe();
-        tictactoe.start();
+        
+        
+//        tictactoe.start();
 
     }
 
