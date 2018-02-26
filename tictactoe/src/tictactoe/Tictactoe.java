@@ -28,7 +28,10 @@ public class Tictactoe {
 
     public void start() {
         boolean done = false;
-        System.out.println("Welcome to Ultimate Tictactoe!");
+        
+        NewJFrame jf = new NewJFrame();
+        jf.setVisible(true);
+   
         player = 'x';
         printTictactoe();
         while (done == false) {
@@ -204,7 +207,7 @@ public class Tictactoe {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
         Tictactoe tictactoe = new Tictactoe();
         tictactoe.start();
 
