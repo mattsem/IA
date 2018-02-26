@@ -131,5 +131,11 @@ public class Board {
         return diagWin;
     }
     
-
+    public boolean validMove(int localBoardSpace){
+        boolean valid = false;
+        if (boardState[localBoardSpace] == ' ') {
+            valid = true;
+        }
+        return valid;
+    }
 }

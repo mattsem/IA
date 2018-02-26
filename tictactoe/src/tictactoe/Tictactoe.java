@@ -69,11 +69,12 @@ public class Tictactoe {
         Scanner sc = new Scanner(System.in);
         int localBoard = sc.nextInt();
         int localBoardSpace = sc.nextInt();
-        if (checkValidMove(localBoard,localBoardSpace) == true) {
+     
+        if (globalBoard[localBoard].validMove(localBoardSpace) == true) {
             globalBoard[localBoard].boardState[localBoardSpace] = player;
             switchPlayer();
-            enableAllBoards();
-            disableBoards(localBoardSpace);
+            disableAllBoards();
+            enableBoard(localBoardSpace);
         } else {
             System.out.println("Invalid move");
         }
@@ -88,18 +89,33 @@ public class Tictactoe {
 
         }
     }
-
-    public void disableBoards(int enabledBoard) {
-        if (globalBoard[enabledBoard].finished == true) {
-            enableAllBoards();
-        } else {
-            for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
-                if (boardIndex != enabledBoard) {
-                    globalBoard[boardIndex].enabled = false;
-                }
-            }
+    
+    
+    public void disableAllBoards() {
+        for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
+            globalBoard[boardIndex].enabled = false;
         }
     }
+    
+    
+    public void enableBoard(int boardIndex){
+        globalBoard[boardIndex].enabled = true;
+        if( globalBoard[boardIndex].finished = true){
+            enableAllBoards();
+        }
+    }
+
+//    public void disableBoards(int enabledBoard) {
+//        if (globalBoard[enabledBoard].finished == true) {
+//            enableAllBoards();
+//        } else {
+//            for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
+//                if (boardIndex != enabledBoard) {
+//                    globalBoard[boardIndex].enabled = false;
+//                }
+//            }
+//        }
+//    }
     
     public boolean checkValidMove(int board, int boardSpace){
         boolean valid = false;
