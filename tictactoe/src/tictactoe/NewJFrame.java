@@ -16,6 +16,9 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     public NewJFrame() {
         initComponents();
+        this.getContentPane().getWidth();
+        this.getContentPane().getHeight();
+        
     }
 
     /**
@@ -27,8 +30,20 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         onePlayerButton = new javax.swing.JButton();
         twoPlayerButton = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,24 +65,29 @@ public class NewJFrame extends javax.swing.JFrame {
                 twoPlayerButtonMouseClicked(evt);
             }
         });
+        twoPlayerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                twoPlayerButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(533, 533, 533)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(twoPlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(onePlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                .addContainerGap(533, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(twoPlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(onePlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(533, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addContainerGap(200, Short.MAX_VALUE)
                 .addComponent(onePlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(twoPlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(200, Short.MAX_VALUE))
         );
@@ -82,11 +102,16 @@ public class NewJFrame extends javax.swing.JFrame {
     private void onePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onePlayerButtonMouseClicked
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_onePlayerButtonMouseClicked
 
     private void twoPlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twoPlayerButtonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_twoPlayerButtonMouseClicked
+
+    private void twoPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twoPlayerButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_twoPlayerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,6 +119,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton onePlayerButton;
     private javax.swing.JButton twoPlayerButton;
     // End of variables declaration//GEN-END:variables

@@ -199,7 +199,7 @@ public class Tictactoe {
         Tictactoe tictactoe = new Tictactoe();
         
         
-//        tictactoe.start();
+        tictactoe.start();
 
     }
 
