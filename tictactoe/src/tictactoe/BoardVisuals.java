@@ -5,6 +5,8 @@
  */
 package tictactoe;
 
+import java.awt.Color;
+
 /**
  *
  * @author semimat19
@@ -17,21 +19,28 @@ public class BoardVisuals extends javax.swing.JPanel {
     public BoardVisuals(Tictactoe parent) {
         initComponents();
         this.parent = parent;
-        this.setSize(600, 600);
+        this.setSize(800, 800);
+        
 
         // add all the buttons!
         int index = 0;
+        int boardNum;
+        int boardSpace;
+        
         for (int boardRow = 0; boardRow < 3 ; boardRow++) {
             for (int boardCol = 0; boardCol < 3; boardCol++) {
                 for (int rows = 0; rows < 3; rows++) {
                     for (int cols = 0; cols < 3; cols++) {
-                        MyButton btn = new MyButton(index++);
+                        boardNum = 3 * boardRow + boardCol;
+                        boardSpace = 3 * rows + cols;
+                        MyButton btn = new MyButton(boardNum, boardSpace);
                         this.add(btn);
-                        btn.setText("X");
-                        btn.setSize(40, 40);
+                        btn.setText(" ");
+                        btn.setSize(50, 50);
+                        
 
                         // TODO - set button position
-                        btn.setLocation(boardCol * 130 + 40 * cols, boardRow * 130 + 40 * rows);
+                        btn.setLocation(130 + boardCol * 175 + 55 * cols, 130 + boardRow * 175 + 55 * rows);
                         btn.addActionListener(new java.awt.event.ActionListener() {
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 myButtonActionPerformed(evt);
@@ -46,8 +55,10 @@ public class BoardVisuals extends javax.swing.JPanel {
 
     public void myButtonActionPerformed(java.awt.event.ActionEvent evt) {
         MyButton btn = (MyButton)evt.getSource();
-        parent.buttonClicked(btn.getIndex());
+        parent.buttonClicked(btn.getBoard(), btn.getBoardSpace());
     }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,11 +73,11 @@ public class BoardVisuals extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 661, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

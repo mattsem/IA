@@ -30,9 +30,9 @@ public class Tictactoe extends javax.swing.JFrame
         menuPanel = new MenuPanel(this);
         
         this.setSize(600, 600);
+        this.setResizable(false);
 
-        menuPanel.setVisible(true);
-        boardPanel.setVisible(false);
+        showMenu();
 
         this.add(boardPanel);
         this.add(menuPanel);
@@ -45,8 +45,14 @@ public class Tictactoe extends javax.swing.JFrame
         }
     }
     
-    public void buttonClicked(int index) {
-        int a = index;
+    public void buttonClicked(int board, int boardSpace) {
+        System.out.println(board);
+        System.out.println(boardSpace);
+    }
+    
+    public void showMenu(){
+        menuPanel.setVisible(true);
+        boardPanel.setVisible(false);
     }
     
     public void showBoard(){

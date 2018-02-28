@@ -11,12 +11,29 @@ package tictactoe;
  */
 public class MyButton extends javax.swing.JButton {
     private int index;
+    private int board;
+    private int boardSpace;
     
-    public MyButton(int index) {
+    
+    public MyButton(int board, int boardSpace) {
         this.index = index;
+        this.board = board;
+        this.boardSpace = boardSpace;
     }
     
     public int getIndex(){
         return index;
     }
+    
+    public int getBoard(){
+        return board;
+    }
+    
+    public int getBoardSpace(){
+        return boardSpace;
+    }
+        
+    
+    
+    
 }
