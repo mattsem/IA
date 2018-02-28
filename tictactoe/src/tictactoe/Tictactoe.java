@@ -11,19 +11,47 @@ import java.util.*;
  *
  * @author matts_000
  */
-public class Tictactoe {
-
+public class Tictactoe extends javax.swing.JFrame
+{
+    private BoardVisuals boardPanel;
+    private MenuPanel menuPanel;
+    
     Board[] globalBoard;
     int boardIndex;
     char player;
 
     public Tictactoe() {
+        // Set default close operation
+        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        
         globalBoard = new Board[9];
+        
+        boardPanel = new BoardVisuals(this);
+        menuPanel = new MenuPanel(this);
+        
+        this.setSize(600, 600);
+
+        menuPanel.setVisible(true);
+        boardPanel.setVisible(false);
+
+        this.add(boardPanel);
+        this.add(menuPanel);
+
+        pack();
+        this.setVisible(true);
+        
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
-
             globalBoard[boardIndex] = new Board();
-
         }
+    }
+    
+    public void buttonClicked(int index) {
+        int a = index;
+    }
+    
+    public void showBoard(){
+        boardPanel.setVisible(true);
+        menuPanel.setVisible(false);
     }
 
     public void start() {
@@ -193,8 +221,8 @@ public class Tictactoe {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        NewJFrame jf = new NewJFrame();
-        jf.setVisible(true);
+//        NewJFrame jf = new NewJFrame();
+//        jf.setVisible(true);
         
         Tictactoe tictactoe = new Tictactoe();
         
