@@ -132,10 +132,15 @@ public class Board {
     }
     
     public boolean validMove(int localBoardSpace){
-        boolean valid = false;
-        if (boardState[localBoardSpace] == ' ') {
-            valid = true;
+        
+        if (boardState[localBoardSpace] == ' ' && enabled == true) {
+            return true;
         }
-        return valid;
+        else{
+            return false;
+        }
+        
     }
+    
+    
 }

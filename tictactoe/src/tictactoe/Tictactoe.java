@@ -17,9 +17,18 @@ public class Tictactoe extends javax.swing.JFrame
     private MenuPanel menuPanel;
     
     Board[] globalBoard;
-    int boardIndex;
-    char player;
+//    int boardIndex;
+    private char player;
 
+    
+    public void setPlayer(char player){
+        this.player = player;
+    }
+    
+    public char getPlayer(){
+        return player;
+    }
+    
     public Tictactoe() {
         // Set default close operation
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -45,9 +54,11 @@ public class Tictactoe extends javax.swing.JFrame
         }
     }
     
-    public void buttonClicked(int board, int boardSpace) {
+    public boolean buttonClicked(int board, int boardSpace) {
         System.out.println(board);
-        System.out.println(boardSpace);
+       System.out.println(boardSpace);
+        return makeMove(board,boardSpace);
+        
     }
     
     public void showMenu(){
@@ -64,10 +75,10 @@ public class Tictactoe extends javax.swing.JFrame
         boolean done = false;
    
         player = 'x';
-        printTictactoe();
+//        printTictactoe();
         while (done == false) {
-            move();
-            printTictactoe();
+//            makeMove();
+//            printTictactoe();
             if (checkWin() == 'x') {
                 done = true;
                 System.out.println("Congrats x!");
@@ -98,28 +109,32 @@ public class Tictactoe extends javax.swing.JFrame
         }
     }
 
-    public void move() {
-        System.out.println("Where would you like to move?");
-        Scanner sc = new Scanner(System.in);
-        int localBoard = sc.nextInt();
-        int localBoardSpace = sc.nextInt();
+    public boolean makeMove(int localBoard, int localBoardSpace) {
+//        System.out.println("Where would you like to move?");
+//        Scanner sc = new Scanner(System.in);
+//        int localBoard = sc.nextInt();
+//        int localBoardSpace = sc.nextInt();
+        
+        
      
         if (globalBoard[localBoard].validMove(localBoardSpace) == true) {
             globalBoard[localBoard].boardState[localBoardSpace] = player;
             switchPlayer();
             disableAllBoards();
             enableBoard(localBoardSpace);
+            return true;
         } else {
             System.out.println("Invalid move");
+            return false;
         }
 
     }
 
     public void enableAllBoards() {
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
-            if (globalBoard[boardIndex].finished == false) {
+//            if (globalBoard[boardIndex].finished == false) {
                 globalBoard[boardIndex].enabled = true;
-            }
+//            }
 
         }
     }
@@ -134,20 +149,20 @@ public class Tictactoe extends javax.swing.JFrame
     
     public void enableBoard(int boardIndex){
         globalBoard[boardIndex].enabled = true;
-        if( globalBoard[boardIndex].finished = true){
+        if(globalBoard[boardIndex].finished = true){
             enableAllBoards();
         }
     }
 
    
-    public boolean checkValidMove(int board, int boardSpace){
-        boolean valid = false;
-        if(globalBoard[board].boardState[boardSpace] == ' ' && globalBoard[board].enabled == true && globalBoard[board].finished == false){
-            valid = true;
-        }
-        
-        return valid;
-    }
+//    public boolean checkValidMove(int board, int boardSpace){
+//        boolean valid = false;
+//        if(globalBoard[board].boardState[boardSpace] == ' ' && globalBoard[board].enabled == true && globalBoard[board].finished == false){
+//            valid = true;
+//        }
+//        
+//        return valid;
+//    }
 
     public char checkWin() {
         char globalWin = ' ';

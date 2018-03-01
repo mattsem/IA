@@ -55,8 +55,13 @@ public class BoardVisuals extends javax.swing.JPanel {
 
     public void myButtonActionPerformed(java.awt.event.ActionEvent evt) {
         MyButton btn = (MyButton)evt.getSource();
-        parent.buttonClicked(btn.getBoard(), btn.getBoardSpace());
+        if(parent.buttonClicked(btn.getBoard(), btn.getBoardSpace()) == true){
+            btn.setText(Character.toString(parent.getPlayer()));
+            btn.setEnabled(false);
+        }
     }
+    
+    
     
     
     
