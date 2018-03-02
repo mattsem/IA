@@ -19,6 +19,9 @@ public class Tictactoe extends javax.swing.JFrame
     Board[] globalBoard;
 //    int boardIndex;
     private char player;
+    public static final char PLAYERX = 'X';
+    public static final char PLAYERO = 'O';
+    public static final char EMPTY = ' ';
 
     
     public void setPlayer(char player){
@@ -54,9 +57,16 @@ public class Tictactoe extends javax.swing.JFrame
         }
     }
     
+    //
+    // check whether move is legal
+    //check whether board is won 
+    //next players turn
+    //
+    //
+    //
     public boolean buttonClicked(int board, int boardSpace) {
         System.out.println(board);
-       System.out.println(boardSpace);
+        System.out.println(boardSpace);
         return makeMove(board,boardSpace);
         
     }
@@ -74,16 +84,16 @@ public class Tictactoe extends javax.swing.JFrame
     public void start() {
         boolean done = false;
    
-        player = 'x';
+        player = PLAYERX;
 //        printTictactoe();
         while (done == false) {
 //            makeMove();
 //            printTictactoe();
-            if (checkWin() == 'x') {
+            if (checkWin() == PLAYERX) {
                 done = true;
                 System.out.println("Congrats x!");
             }
-            if (checkWin() == 'o') {
+            if (checkWin() == PLAYERO) {
                 done = true;
                 System.out.println("Congrats o!");
             }
@@ -98,13 +108,13 @@ public class Tictactoe extends javax.swing.JFrame
     }
 
     public void switchPlayer() {
-        if (player == 'x') {
-            player = 'o';
+        if (player == PLAYERX) {
+            player = PLAYERO;
             return;
         }
 
-        if (player == 'o') {
-            player = 'x';
+        if (player == PLAYERO) {
+            player = PLAYERX;
             return;
         }
     }
@@ -149,7 +159,7 @@ public class Tictactoe extends javax.swing.JFrame
     
     public void enableBoard(int boardIndex){
         globalBoard[boardIndex].enabled = true;
-        if(globalBoard[boardIndex].finished = true){
+        if(true == globalBoard[boardIndex].isFinished()){
             enableAllBoards();
         }
     }
@@ -157,7 +167,7 @@ public class Tictactoe extends javax.swing.JFrame
    
 //    public boolean checkValidMove(int board, int boardSpace){
 //        boolean valid = false;
-//        if(globalBoard[board].boardState[boardSpace] == ' ' && globalBoard[board].enabled == true && globalBoard[board].finished == false){
+//        if(globalBoard[board].boardState[boardSpace] == EMPTY && globalBoard[board].enabled == true && globalBoard[board].finished == false){
 //            valid = true;
 //        }
 //        
@@ -165,73 +175,73 @@ public class Tictactoe extends javax.swing.JFrame
 //    }
 
     public char checkWin() {
-        char globalWin = ' ';
-        if (horizontalGlobalWin() == 'x') {
-            globalWin = 'x';
+        char globalWin = EMPTY;
+        if (horizontalGlobalWin() == PLAYERX) {
+            globalWin = PLAYERX;
         }
-        if (horizontalGlobalWin() == 'o') {
-            globalWin = 'o';
-        }
-
-        if (verticalGlobalWin() == 'x') {
-            globalWin = 'x';
-        }
-        if (verticalGlobalWin() == 'o') {
-            globalWin = 'o';
+        if (horizontalGlobalWin() == PLAYERO) {
+            globalWin = PLAYERO;
         }
 
-        if (diagGlobalWin() == 'x') {
-            globalWin = 'x';
+        if (verticalGlobalWin() == PLAYERX) {
+            globalWin = PLAYERX;
         }
-        if (diagGlobalWin() == 'o') {
-            globalWin = 'o';
+        if (verticalGlobalWin() == PLAYERO) {
+            globalWin = PLAYERO;
+        }
+
+        if (diagGlobalWin() == PLAYERX) {
+            globalWin = PLAYERX;
+        }
+        if (diagGlobalWin() == PLAYERO) {
+            globalWin = PLAYERO;
         }
         return globalWin;
     }
 
     public char verticalGlobalWin() {
-        char vertGlobalWin = ' ';
+        char vertGlobalWin = EMPTY;
         for (int col = 0; col < 3; col++) {
-            if (globalBoard[col].checkBoardWin() == 'x' && globalBoard[col + 3].checkBoardWin() == 'x' && globalBoard[col + 6].checkBoardWin() == 'x') {
-                vertGlobalWin = 'x';
+            if (globalBoard[col].checkBoardWin() == PLAYERX && globalBoard[col + 3].checkBoardWin() == PLAYERX && globalBoard[col + 6].checkBoardWin() == PLAYERX) {
+                vertGlobalWin = PLAYERX;
             }
         }
         for (int col = 0; col < 3; col++) {
-            if (globalBoard[col].checkBoardWin() == 'o' && globalBoard[col + 3].checkBoardWin() == 'o' && globalBoard[col + 6].checkBoardWin() == 'o') {
-                vertGlobalWin = 'o';
+            if (globalBoard[col].checkBoardWin() == PLAYERO && globalBoard[col + 3].checkBoardWin() == PLAYERO && globalBoard[col + 6].checkBoardWin() == PLAYERO) {
+                vertGlobalWin = PLAYERO;
             }
         }
         return vertGlobalWin;
     }
 
     public char horizontalGlobalWin() {
-        char horGlobalWin = ' ';
+        char horGlobalWin = EMPTY;
         for (int row = 0; row < 3; row++) {
-            if (globalBoard[3 * row].checkBoardWin() == 'x' && globalBoard[3 * row + 1].checkBoardWin() == 'x' && globalBoard[3 * row + 2].checkBoardWin() == 'x') {
-                horGlobalWin = 'x';
+            if (globalBoard[3 * row].checkBoardWin() == PLAYERX && globalBoard[3 * row + 1].checkBoardWin() == PLAYERX && globalBoard[3 * row + 2].checkBoardWin() == PLAYERX) {
+                horGlobalWin = PLAYERX;
             }
         }
         for (int row = 0; row < 3; row++) {
-            if (globalBoard[3 * row].checkBoardWin() == 'o' && globalBoard[3 * row + 1].checkBoardWin() == 'o' && globalBoard[3 * row + 2].checkBoardWin() == 'o') {
-                horGlobalWin = 'o';
+            if (globalBoard[3 * row].checkBoardWin() == PLAYERO && globalBoard[3 * row + 1].checkBoardWin() == PLAYERO && globalBoard[3 * row + 2].checkBoardWin() == PLAYERO) {
+                horGlobalWin = PLAYERO;
             }
         }
         return horGlobalWin;
     }
 
     public char diagGlobalWin() {
-        char diagGlobalWin = ' ';
-        if (globalBoard[0].checkBoardWin() == 'x' && globalBoard[4].checkBoardWin() == 'x' && globalBoard[8].checkBoardWin() == 'x') {
-            diagGlobalWin = 'x';
+        char diagGlobalWin = EMPTY;
+        if (globalBoard[0].checkBoardWin() == PLAYERX && globalBoard[4].checkBoardWin() == PLAYERX && globalBoard[8].checkBoardWin() == PLAYERX) {
+            diagGlobalWin = PLAYERX;
         }
-        if (globalBoard[0].checkBoardWin() == 'o' && globalBoard[4].checkBoardWin() == 'o' && globalBoard[8].checkBoardWin() == 'o') {
-            diagGlobalWin = 'o';
+        if (globalBoard[0].checkBoardWin() == PLAYERO && globalBoard[4].checkBoardWin() == PLAYERO && globalBoard[8].checkBoardWin() == PLAYERO) {
+            diagGlobalWin = PLAYERO;
         }
-        if (globalBoard[2].checkBoardWin() == 'x' && globalBoard[4].checkBoardWin() == 'x' && globalBoard[6].checkBoardWin() == 'x') {
-            diagGlobalWin = 'x';
+        if (globalBoard[2].checkBoardWin() == PLAYERX && globalBoard[4].checkBoardWin() == PLAYERX && globalBoard[6].checkBoardWin() == PLAYERX) {
+            diagGlobalWin = PLAYERX;
         }
-        if (globalBoard[2].checkBoardWin() == 'o' && globalBoard[4].checkBoardWin() == 'o' && globalBoard[6].checkBoardWin() == 'o') {
-            diagGlobalWin = 'o';
+        if (globalBoard[2].checkBoardWin() == PLAYERO && globalBoard[4].checkBoardWin() == PLAYERO && globalBoard[6].checkBoardWin() == PLAYERO) {
+            diagGlobalWin = PLAYERO;
         }
 
         return diagGlobalWin;

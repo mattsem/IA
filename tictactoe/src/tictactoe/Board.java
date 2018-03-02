@@ -12,19 +12,24 @@ package tictactoe;
 public class Board {
     char[] boardState;
     boolean enabled;
-    boolean finished;
+    private boolean finished;
     
     public Board(){
         boardState = new char[9];
         reset();
     }
     
+    public boolean isFinished(){
+        return finished;
+    }
+    
+    
     public void reset(){
         enabled = true;
         finished = false;
         for (int boardPlace = 0; boardPlace < 9; boardPlace++) {
             
-                boardState[boardPlace] = ' ';
+                boardState[boardPlace] = Tictactoe.EMPTY;
             
         }
     }
@@ -51,27 +56,27 @@ public class Board {
         System.out.println("-+-+-");
     }
     public char checkBoardWin(){
-        char boardWin = ' ';
-        if(checkHorizontal() == 'x'){
-            boardWin = 'x';
+        char boardWin = Tictactoe.EMPTY;
+        if(checkHorizontal() == Tictactoe.PLAYERX){
+            boardWin = Tictactoe.PLAYERX;
         }
-        if(checkHorizontal() == 'o'){
-            boardWin = 'o';
+        if(checkHorizontal() == Tictactoe.PLAYERO){
+            boardWin = Tictactoe.PLAYERO;
         }
-        if(checkVertical() == 'x'){
-            boardWin = 'x';
+        if(checkVertical() == Tictactoe.PLAYERX){
+            boardWin = Tictactoe.PLAYERX;
         }
-        if(checkVertical() == 'o'){
-            boardWin = 'o';
+        if(checkVertical() == Tictactoe.PLAYERO){
+            boardWin = Tictactoe.PLAYERO;
         }
-        if(checkDiagonal() == 'x'){
-            boardWin = 'x';
+        if(checkDiagonal() == Tictactoe.PLAYERX){
+            boardWin = Tictactoe.PLAYERX;
         }
-        if(checkDiagonal() == 'o'){
-            boardWin = 'o';
+        if(checkDiagonal() == Tictactoe.PLAYERO){
+            boardWin = Tictactoe.PLAYERO;
         }
         
-        if(boardWin != ' '){
+        if(boardWin != Tictactoe.EMPTY){
             disableFinishedBoard();
         } 
         
@@ -86,54 +91,54 @@ public class Board {
     
     
     public char checkHorizontal(){
-        char rowWin = ' ';
+        char rowWin = Tictactoe.EMPTY;
         for (int row = 0; row < 3; row++) {
-            if(boardState[3*row]=='x' && boardState[3*row+1]=='x' && boardState[3*row+2]=='x'){
-                rowWin='x';   
+            if(boardState[3*row]==Tictactoe.PLAYERX && boardState[3*row+1]==Tictactoe.PLAYERX && boardState[3*row+2]==Tictactoe.PLAYERX){
+                rowWin=Tictactoe.PLAYERX;   
             }
         }
         for (int row = 0; row < 3; row++) {
-            if(boardState[3*row]=='o' && boardState[3*row+1]=='o' && boardState[3*row+2]=='o'){
-                rowWin='o';   
+            if(boardState[3*row]==Tictactoe.PLAYERO && boardState[3*row+1]==Tictactoe.PLAYERO && boardState[3*row+2]==Tictactoe.PLAYERO){
+                rowWin=Tictactoe.PLAYERO;   
             }
         }
         
         return rowWin;
     }
     public char checkVertical(){
-        char columnWin = ' ';
+        char columnWin = Tictactoe.EMPTY;
         for (int col = 0; col < 3; col++) {
-            if(boardState[col]=='x' && boardState[col+3]=='x' && boardState[col+6]=='x'){
-                columnWin = 'x';
+            if(boardState[col]==Tictactoe.PLAYERX && boardState[col+3]==Tictactoe.PLAYERX && boardState[col+6]==Tictactoe.PLAYERX){
+                columnWin = Tictactoe.PLAYERX;
             }
         }
         for (int col = 0; col < 3; col++) {
-            if(boardState[col]=='o' && boardState[col+3]=='o' && boardState[col+6]=='o'){
-                columnWin = 'o';
+            if(boardState[col]==Tictactoe.PLAYERO && boardState[col+3]==Tictactoe.PLAYERO && boardState[col+6]==Tictactoe.PLAYERO){
+                columnWin = Tictactoe.PLAYERO;
             }
         }
         return columnWin;
     }
     public char checkDiagonal(){
-        char diagWin =' ';
-        if(boardState[0] =='x' && boardState[4] =='x'&& boardState[8] =='x'){
-            diagWin = 'x';
+        char diagWin =Tictactoe.EMPTY;
+        if(boardState[0] ==Tictactoe.PLAYERX && boardState[4] ==Tictactoe.PLAYERX&& boardState[8] ==Tictactoe.PLAYERX){
+            diagWin = Tictactoe.PLAYERX;
         }
-        if(boardState[0] =='o' && boardState[4] =='o'&& boardState[8] =='o'){
-            diagWin = 'o';
+        if(boardState[0] ==Tictactoe.PLAYERO && boardState[4] ==Tictactoe.PLAYERO&& boardState[8] ==Tictactoe.PLAYERO){
+            diagWin = Tictactoe.PLAYERO;
         }
-        if(boardState[2] =='x' && boardState[4] =='x'&& boardState[6] =='x'){
-            diagWin = 'x';
+        if(boardState[2] ==Tictactoe.PLAYERX && boardState[4] ==Tictactoe.PLAYERX&& boardState[6] ==Tictactoe.PLAYERX){
+            diagWin = Tictactoe.PLAYERX;
         }
-        if(boardState[2] =='o' && boardState[4] =='o'&& boardState[6] =='o'){
-            diagWin = 'o';
+        if(boardState[2] ==Tictactoe.PLAYERO && boardState[4] ==Tictactoe.PLAYERO&& boardState[6] ==Tictactoe.PLAYERO){
+            diagWin = Tictactoe.PLAYERO;
         }
         return diagWin;
     }
     
     public boolean validMove(int localBoardSpace){
         
-        if (boardState[localBoardSpace] == ' ' && enabled == true) {
+        if (boardState[localBoardSpace] == Tictactoe.EMPTY && enabled == true) {
             return true;
         }
         else{
