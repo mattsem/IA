@@ -67,10 +67,53 @@ public class Tictactoe extends javax.swing.JFrame
     public boolean buttonClicked(int board, int boardSpace) {
         System.out.println(board);
         System.out.println(boardSpace);
-        return makeMove(board,boardSpace);
-        
+        if (globalBoard[board].validMove(boardSpace) == true) {
+            globalBoard[board].boardState[boardSpace] = player;
+            if(globalBoard[board].checkBoardWin() != EMPTY){
+                if(checkWin() != EMPTY){
+                    start(true);
+                    System.out.println("Congrats" + checkWin());
+                }
+            }
+            switchPlayer();
+            disableAllBoards();
+            if(globalBoard[boardSpace].checkBoardWin() == EMPTY){
+                enableBoard(boardSpace);
+            }
+            else{
+                enableAllBoards();
+            }
+            return true;
+        }
+        else{
+            System.out.println("Invalid move");
+            return false;
+        }
     }
     
+    
+    
+    
+//    public boolean makeMove(int localBoard, int localBoardSpace) {
+////        System.out.println("Where would you like to move?");
+////        Scanner sc = new Scanner(System.in);
+////        int localBoard = sc.nextInt();
+////        int localBoardSpace = sc.nextInt();
+//        
+//        
+//     
+//        if (globalBoard[localBoard].validMove(localBoardSpace) == true) {
+//            globalBoard[localBoard].boardState[localBoardSpace] = player;
+//            switchPlayer();
+//            disableAllBoards();
+//            enableBoard(localBoardSpace);
+//            return true;
+//        } else {
+//            System.out.println("Invalid move");
+//            return false;
+//        }
+//
+//    }
     public void showMenu(){
         menuPanel.setVisible(true);
         boardPanel.setVisible(false);
@@ -81,24 +124,25 @@ public class Tictactoe extends javax.swing.JFrame
         menuPanel.setVisible(false);
     }
 
-    public void start() {
-        boolean done = false;
+    public void start(boolean done) {
+        
    
         player = PLAYERX;
 //        printTictactoe();
-        while (done == false) {
-//            makeMove();
-//            printTictactoe();
-            if (checkWin() == PLAYERX) {
-                done = true;
-                System.out.println("Congrats x!");
-            }
-            if (checkWin() == PLAYERO) {
-                done = true;
-                System.out.println("Congrats o!");
-            }
-
-        }
+//        while (done == false) {
+////            makeMove();
+////            printTictactoe();
+//            
+//            if (checkWin() == PLAYERX) {
+//                done = true;
+//                System.out.println("Congrats x!");
+//            }
+//            if (checkWin() == PLAYERO) {
+//                done = true;
+//                System.out.println("Congrats o!");
+//            }
+//
+//        }
     }
 
     public void printTictactoe() {
@@ -119,26 +163,7 @@ public class Tictactoe extends javax.swing.JFrame
         }
     }
 
-    public boolean makeMove(int localBoard, int localBoardSpace) {
-//        System.out.println("Where would you like to move?");
-//        Scanner sc = new Scanner(System.in);
-//        int localBoard = sc.nextInt();
-//        int localBoardSpace = sc.nextInt();
-        
-        
-     
-        if (globalBoard[localBoard].validMove(localBoardSpace) == true) {
-            globalBoard[localBoard].boardState[localBoardSpace] = player;
-            switchPlayer();
-            disableAllBoards();
-            enableBoard(localBoardSpace);
-            return true;
-        } else {
-            System.out.println("Invalid move");
-            return false;
-        }
-
-    }
+    
 
     public void enableAllBoards() {
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
@@ -159,9 +184,9 @@ public class Tictactoe extends javax.swing.JFrame
     
     public void enableBoard(int boardIndex){
         globalBoard[boardIndex].enabled = true;
-        if(true == globalBoard[boardIndex].isFinished()){
-            enableAllBoards();
-        }
+//        if(true == globalBoard[boardIndex].isFinished()){
+//            enableAllBoards();
+//        }
     }
 
    
@@ -258,7 +283,7 @@ public class Tictactoe extends javax.swing.JFrame
         Tictactoe tictactoe = new Tictactoe();
         
         
-        tictactoe.start();
+        tictactoe.start(false);
 
     }
 

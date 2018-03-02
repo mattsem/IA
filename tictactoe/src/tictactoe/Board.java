@@ -19,14 +19,14 @@ public class Board {
         reset();
     }
     
-    public boolean isFinished(){
-        return finished;
-    }
+//    public boolean isFinished(){
+//        return finished;
+//    }
     
     
     public void reset(){
         enabled = true;
-        finished = false;
+//        finished = false;
         for (int boardPlace = 0; boardPlace < 9; boardPlace++) {
             
                 boardState[boardPlace] = Tictactoe.EMPTY;
@@ -77,17 +77,17 @@ public class Board {
         }
         
         if(boardWin != Tictactoe.EMPTY){
-            disableFinishedBoard();
+//            disableFinishedBoard();
         } 
         
         
         return boardWin;
     }
     
-    public void disableFinishedBoard(){
-        finished = true;
-        enabled = false;
-    }
+//    public void disableFinishedBoard(){
+////        finished = true;
+//        enabled = false;
+//    }
     
     
     public char checkHorizontal(){
