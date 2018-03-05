@@ -55,6 +55,9 @@ public class Tictactoe extends javax.swing.JFrame
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
             globalBoard[boardIndex] = new Board();
         }
+        
+        boardPanel.setButtonsColorWhite();
+        
     }
     
     //
@@ -67,12 +70,18 @@ public class Tictactoe extends javax.swing.JFrame
     public boolean buttonClicked(int board, int boardSpace) {
         System.out.println(board);
         System.out.println(boardSpace);
+        
+        
+        
         if (globalBoard[board].validMove(boardSpace) == true) {
             globalBoard[board].boardState[boardSpace] = player;
+            boardPanel.setButtonColor(board,boardSpace,player);
             if(globalBoard[board].checkBoardWin() != EMPTY){
+                boardPanel.setBoardColor(board, globalBoard[board].checkBoardWin());
                 if(checkWin() != EMPTY){
                     start(true);
                     System.out.println("Congrats" + checkWin());
+                    boardPanel.setButtonsColorWinner(checkWin());
                 }
             }
             switchPlayer();

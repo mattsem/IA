@@ -13,6 +13,7 @@ import java.awt.Color;
  */
 public class BoardVisuals extends javax.swing.JPanel {
     private Tictactoe parent;
+    MyButton buttons[];
     /**
      * Creates new form BoardVisuals
      */
@@ -20,10 +21,12 @@ public class BoardVisuals extends javax.swing.JPanel {
         initComponents();
         this.parent = parent;
         this.setSize(800, 800);
+        buttons = new MyButton[81];
+        this.setBackground(Color.gray);
         
 
         // add all the buttons!
-        int index = 0;
+//        int index = 0;
         int boardNum;
         int boardSpace;
         
@@ -33,20 +36,22 @@ public class BoardVisuals extends javax.swing.JPanel {
                     for (int cols = 0; cols < 3; cols++) {
                         boardNum = 3 * boardRow + boardCol;
                         boardSpace = 3 * rows + cols;
-                        MyButton btn = new MyButton(boardNum, boardSpace);
-                        this.add(btn);
-                        btn.setText(" ");
-                        btn.setSize(50, 50);
+                        buttons[boardNum * 9 + boardSpace] = new MyButton(boardNum, boardSpace);
+                        buttons[boardNum * 9 + boardSpace].setLocation(130 + boardCol * 175 + 55 * cols, 130 + boardRow * 175 + 55 * rows);
+//                        MyButton btn = new MyButton(boardNum, boardSpace);
+                        this.add(buttons[boardNum * 9 + boardSpace]);
+                        buttons[boardNum * 9 + boardSpace].setText(" ");
+                        buttons[boardNum * 9 + boardSpace].setSize(50, 50);
                         
 
                         // TODO - set button position
-                        btn.setLocation(130 + boardCol * 175 + 55 * cols, 130 + boardRow * 175 + 55 * rows);
-                        btn.addActionListener(new java.awt.event.ActionListener() {
+//                        btn.setLocation(130 + boardCol * 175 + 55 * cols, 130 + boardRow * 175 + 55 * rows);
+                        buttons[boardNum * 9 + boardSpace].addActionListener(new java.awt.event.ActionListener() {
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 myButtonActionPerformed(evt);
                             }
                         });
-                        btn.setVisible(true);
+                        buttons[boardNum * 9 + boardSpace].setVisible(true);
                     }
                 }            
             }
@@ -61,7 +66,46 @@ public class BoardVisuals extends javax.swing.JPanel {
         }
     }
     
+    public void setButtonsColorWhite(){
+        for (int i = 0; i < 81; i++) {
+            buttons[i].setBackground(Color.white);
+        }
+    }
     
+    public void setButtonsColorWinner(char player){
+        if(player == 'X'){
+            for (int i = 0; i < 81; i++) {
+                buttons[i].setBackground(Color.DARK_GRAY);
+            }
+        }
+        if(player == 'O'){
+            for (int i = 0; i < 81; i++) {
+                buttons[i].setBackground(Color.LIGHT_GRAY);
+            }
+        }
+    }
+    
+    public void setBoardColor(int board, char player){
+        if(player == 'X'){
+            for (int i = 9 * board; i < 9 * board + 9; i++) {
+                buttons[i].setBackground(Color.DARK_GRAY);
+            }
+        }
+        if(player == 'O'){
+            for (int i = 9 * board; i < 9 * board + 9; i++) {
+                buttons[i].setBackground(Color.LIGHT_GRAY);
+            }
+        }
+    }
+    
+    public void setButtonColor(int board, int boardSpace, char player){
+        if(player == 'X'){
+            buttons[board * 9 + boardSpace].setBackground(Color.DARK_GRAY);
+        }
+        if(player == 'O'){
+            buttons[board * 9 + boardSpace].setBackground(Color.LIGHT_GRAY);
+        }
+    }
     
     
     
