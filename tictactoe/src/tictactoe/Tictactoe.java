@@ -15,6 +15,7 @@ public class Tictactoe extends javax.swing.JFrame
 {
     private BoardVisuals boardPanel;
     private MenuPanel menuPanel;
+    private boolean onePlayer;
     
     Board[] globalBoard;
 //    int boardIndex;
@@ -30,6 +31,13 @@ public class Tictactoe extends javax.swing.JFrame
     
     public char getPlayer(){
         return player;
+    }
+    
+    public void setOnePlayer(boolean onePlayer){
+        this.onePlayer = onePlayer;
+    }
+    public boolean getOnePlayer(){
+        return onePlayer;
     }
     
     public Tictactoe() {
