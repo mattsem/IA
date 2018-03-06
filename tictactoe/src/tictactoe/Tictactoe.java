@@ -88,6 +88,7 @@ public class Tictactoe extends javax.swing.JFrame {
                     start(true);
                     System.out.println("Congrats" + checkWin());
                     boardPanel.setButtonsColorWinner(checkWin());
+                    disableAllBoards();
                 }
             }
             switchPlayer();
