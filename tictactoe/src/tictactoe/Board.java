@@ -84,6 +84,42 @@ public class Board {
         return boardWin;
     }
     
+    
+    public boolean checkPossibleX(){
+        if(checkPossibleHorizontal(Tictactoe.PLAYERX) != 3){
+            
+        }
+        
+        if(checkPossibleVertical(Tictactoe.PLAYERX) != 3){
+            
+        }
+        if(checkPossibleDiagonal(Tictactoe.PLAYERX) == true){
+            
+        }
+        if(checkPossibleOtherDiagonal(Tictactoe.PLAYERX) == true){
+            
+        }
+        
+    }
+    
+    public boolean checkPosibleO(){
+        if(checkPossibleHorizontal(Tictactoe.PLAYERO) != 3){
+            
+        }
+        
+        if(checkPossibleVertical(Tictactoe.PLAYERO) != 3){
+            
+        }
+        if(checkPossibleDiagonal(Tictactoe.PLAYERO) == true){
+            
+        }
+        if(checkPossibleOtherDiagonal(Tictactoe.PLAYERO) == true){
+            
+        }
+        
+    }
+    
+    
 //    public void disableFinishedBoard(){
 ////        finished = true;
 //        enabled = false;
@@ -105,6 +141,28 @@ public class Board {
         
         return rowWin;
     }
+    
+    public int checkPossibleHorizontal(char symbol){
+        int possible = 3;
+        
+        for (int row = 0; row < 3; row++) {
+            int count = 0;
+            
+            for (int i = 0; i < 3; i++) {
+                if(boardState[row + i] == symbol){
+                    count++;
+                }
+            }
+            if(count == 2){
+                possible = row;
+            }
+            
+        }
+        return possible;
+    }
+            
+            
+            
     public char checkVertical(){
         char columnWin = Tictactoe.EMPTY;
         for (int col = 0; col < 3; col++) {
@@ -119,6 +177,27 @@ public class Board {
         }
         return columnWin;
     }
+    
+    public int checkPossibleVertical(char symbol){
+        int possible = 3;
+        
+        for (int col = 0; col < 3; col++) {
+            int count = 0;
+            
+            for (int i = 0; i < 3; i++) {
+                if(boardState[col + 3 * i] == Tictactoe.PLAYERX){
+                    count++;
+                }
+        
+            }
+            if(count == 2){
+                possible = col;
+            }
+            
+        }
+        return possible;
+    }
+    
     public char checkDiagonal(){
         char diagWin =Tictactoe.EMPTY;
         if(boardState[0] ==Tictactoe.PLAYERX && boardState[4] ==Tictactoe.PLAYERX&& boardState[8] ==Tictactoe.PLAYERX){
@@ -134,6 +213,46 @@ public class Board {
             diagWin = Tictactoe.PLAYERO;
         }
         return diagWin;
+    }
+    
+    public boolean checkPossibleDiagonal(char symbol){
+        
+        
+        int count = 0;
+        
+        
+        for (int i = 0; i < 3; i++) {
+            if(boardState[4 * i] == symbol){
+                count++;
+            }
+            
+        }
+        
+        if(count == 2){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+        
+    }
+    
+    public boolean checkPossibleOtherDiagonal(char symbol){
+        
+        int count = 0;
+        
+        for (int i = 0; i < 3; i++) {
+            if(boardState[2 * i + 2] == Tictactoe.PLAYERX){
+                count++;
+            }
+        }
+        if(count == 2){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     public boolean validMove(int localBoardSpace){
