@@ -10,7 +10,9 @@ package tictactoe;
  * @author Matt
  */
 public class MenuPanel extends javax.swing.JPanel {
+
     private Tictactoe parent;
+
     /**
      * Creates new form MenuPanel
      */
