@@ -99,7 +99,7 @@ public class Board {
         if(checkPossibleOtherDiagonal(Tictactoe.PLAYERX) == true){
             
         }
-        
+        return true;
     }
     
     public boolean checkPosibleO(){
@@ -116,7 +116,7 @@ public class Board {
         if(checkPossibleOtherDiagonal(Tictactoe.PLAYERO) == true){
             
         }
-        
+        return true;
     }
     
     
