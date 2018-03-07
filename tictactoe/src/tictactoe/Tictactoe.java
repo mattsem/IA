@@ -180,6 +180,7 @@ public class Tictactoe extends javax.swing.JFrame {
             player = PLAYERX;
             return;
         }
+        
     }
 
     public void enableAllBoards() {
