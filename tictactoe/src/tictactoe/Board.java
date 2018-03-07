@@ -87,11 +87,36 @@ public class Board {
     }
     
     public void playRow(int row){
-    
+        for (int i = 0; i < 3; i++) {
+            if(boardState[3*row + i] == Tictactoe.EMPTY){
+                
+            }
+        }
     }
     
     public void playCol(int col){
-        
+        for (int i = 0; i < 3; i++) {
+            if(boardState[col + 3 * i] == Tictactoe.EMPTY){
+                
+            }
+        }
+    }
+    
+    public void playRightDiag(){
+        for (int i = 0; i < 3; i++) {
+            if (boardState[4 * i] == Tictactoe.EMPTY) {
+                
+            }
+
+        }
+    }
+    
+    public void playLeftDiag(){
+        for (int i = 0; i < 3; i++) {
+            if (boardState[2 * i + 2] == Tictactoe.EMPTY) {
+                
+            }
+        }
     }
 
     //check to see if computer can block a win
@@ -109,11 +134,11 @@ public class Board {
             playCol(result);
             return true;
         }
-        if (checkPossibleDiagonal(Tictactoe.PLAYERX) == true) {
-
+        if (checkPossibleRightDiagonal(Tictactoe.PLAYERX) == true) {
+                playRightDiag();
         }
-        if (checkPossibleOtherDiagonal(Tictactoe.PLAYERX) == true) {
-
+        if (checkPossibleLeftDiagonal(Tictactoe.PLAYERX) == true) {
+                playLeftDiag();
         }
         return false;
     }
@@ -121,20 +146,26 @@ public class Board {
     
     //check to see if computer can win
     public boolean checkPosibleO() {
-        if (checkPossibleHorizontal(Tictactoe.PLAYERO) != INVALID) {
-
+        int result = checkPossibleHorizontal(Tictactoe.PLAYERO);
+        if (result != INVALID) {
+            //block win on given row
+            playRow(result);
+            return true;
         }
-
-        if (checkPossibleVertical(Tictactoe.PLAYERO) != INVALID) {
-
+           
+        result = checkPossibleVertical(Tictactoe.PLAYERO);
+        if (result != INVALID) {
+            //block win on ginven column
+            playCol(result);
+            return true;
         }
-        if (checkPossibleDiagonal(Tictactoe.PLAYERO) == true) {
-
+        if (checkPossibleRightDiagonal(Tictactoe.PLAYERO) == true) {
+                playRightDiag();
         }
-        if (checkPossibleOtherDiagonal(Tictactoe.PLAYERO) == true) {
-
+        if (checkPossibleLeftDiagonal(Tictactoe.PLAYERO) == true) {
+                playLeftDiag();
         }
-        return true;
+        return false;
     }
 
 //    public void disableFinishedBoard(){
@@ -146,6 +177,7 @@ public class Board {
         for (int row = 0; row < 3; row++) {
             if (boardState[3 * row] == Tictactoe.PLAYERX && boardState[3 * row + 1] == Tictactoe.PLAYERX && boardState[3 * row + 2] == Tictactoe.PLAYERX) {
                 rowWin = Tictactoe.PLAYERX;
+                
             }
         }
         for (int row = 0; row < 3; row++) {
@@ -228,7 +260,7 @@ public class Board {
         return diagWin;
     }
 
-    public boolean checkPossibleDiagonal(char symbol) {
+    public boolean checkPossibleRightDiagonal(char symbol) {
 
         int count = 0;
 
@@ -247,7 +279,7 @@ public class Board {
 
     }
 
-    public boolean checkPossibleOtherDiagonal(char symbol) {
+    public boolean checkPossibleLeftDiagonal(char symbol) {
 
         int count = 0;
 

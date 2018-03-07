@@ -5,6 +5,8 @@
  */
 package tictactoe;
 
+import java.awt.Color;
+
 /**
  *
  * @author Matt
@@ -19,6 +21,7 @@ public class MenuPanel extends javax.swing.JPanel {
     public MenuPanel(Tictactoe parent) {
         initComponents();
         this.parent = parent;
+        this.setBackground(Color.gray);
     }
 
     /**

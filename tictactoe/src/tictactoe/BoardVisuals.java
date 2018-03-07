@@ -25,6 +25,7 @@ public class BoardVisuals extends javax.swing.JPanel {
         this.setSize(800, 800);
         buttons = new MyButton[81];
         this.setBackground(Color.gray);
+        
 
         // add all the buttons!
 //        int index = 0;
@@ -63,6 +64,7 @@ public class BoardVisuals extends javax.swing.JPanel {
         if (parent.buttonClicked(btn.getBoard(), btn.getBoardSpace()) == true) {
             btn.setText(Character.toString(parent.getPlayer()));
             btn.setEnabled(false);
+            parent.switchPlayer();
         }
     }
 
@@ -96,6 +98,10 @@ public class BoardVisuals extends javax.swing.JPanel {
                 buttons[i].setBackground(Color.LIGHT_GRAY);
             }
         }
+    }
+    //outline winning buttons colors
+    public void setButtonOutline(int board, int boardSpace){
+        buttons[board * 9 + boardSpace].setBackground(Color.black);
     }
 
     public void setButtonColor(int board, int boardSpace, char player) {

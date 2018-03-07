@@ -43,7 +43,7 @@ public class Tictactoe extends javax.swing.JFrame {
     public Tictactoe() {
         // Set default close operation
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-
+        player = PLAYERX;
         globalBoard = new Board[9];
 
         boardPanel = new BoardVisuals(this);
@@ -56,6 +56,7 @@ public class Tictactoe extends javax.swing.JFrame {
 
         this.add(boardPanel);
         this.add(menuPanel);
+        
 
         pack();
         this.setVisible(true);
@@ -65,6 +66,7 @@ public class Tictactoe extends javax.swing.JFrame {
         }
 
         boardPanel.setButtonsColorWhite();
+        
 
     }
 
@@ -85,24 +87,31 @@ public class Tictactoe extends javax.swing.JFrame {
             if (globalBoard[board].checkBoardWin() != EMPTY) {
                 boardPanel.setBoardColor(board, globalBoard[board].checkBoardWin());
                 if (checkWin() != EMPTY) {
-                    start(true);
+//                    start(true);
                     System.out.println("Congrats" + checkWin());
                     boardPanel.setButtonsColorWinner(checkWin());
                     disableAllBoards();
                 }
             }
-            switchPlayer();
+            
             disableAllBoards();
             if (globalBoard[boardSpace].checkBoardWin() == EMPTY) {
                 enableBoard(boardSpace);
             } else {
                 enableAllBoards();
             }
+            
             return true;
         } else {
             System.out.println("Invalid move");
             return false;
         }
+    }
+    
+    
+    
+    public void computerMove(){
+        
     }
 
 //    public boolean makeMove(int localBoard, int localBoardSpace) {
@@ -135,25 +144,25 @@ public class Tictactoe extends javax.swing.JFrame {
         menuPanel.setVisible(false);
     }
 
-    public void start(boolean done) {
-
-        player = PLAYERX;
-//        printTictactoe();
-//        while (done == false) {
-////            makeMove();
-////            printTictactoe();
-//            
-//            if (checkWin() == PLAYERX) {
-//                done = true;
-//                System.out.println("Congrats x!");
-//            }
-//            if (checkWin() == PLAYERO) {
-//                done = true;
-//                System.out.println("Congrats o!");
-//            }
-//
-//        }
-    }
+//    public void start() {
+////
+//        player = PLAYERX;
+////        printTictactoe();
+////        while (done == false) {
+//////            makeMove();
+//////            printTictactoe();
+////            
+////            if (checkWin() == PLAYERX) {
+////                done = true;
+////                System.out.println("Congrats x!");
+////            }
+////            if (checkWin() == PLAYERO) {
+////                done = true;
+////                System.out.println("Congrats o!");
+////            }
+////
+////        }
+//   }
 
     public void printTictactoe() {
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
@@ -285,8 +294,9 @@ public class Tictactoe extends javax.swing.JFrame {
 //        jf.setVisible(true);
 
         Tictactoe tictactoe = new Tictactoe();
-
-        tictactoe.start(false);
+        
+        
+//        tictactoe.start();
 
     }
 
