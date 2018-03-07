@@ -14,6 +14,8 @@ public class Board {
     char[] boardState;
     boolean enabled;
     private boolean finished;
+    private static final int INVALID = 3;
+    
 
     public Board() {
         boardState = new char[9];
@@ -83,14 +85,29 @@ public class Board {
 
         return boardWin;
     }
+    
+    public void playRow(int row){
+    
+    }
+    
+    public void playCol(int col){
+        
+    }
 
+    //check to see if computer can block a win
     public boolean checkPossibleX() {
-        if (checkPossibleHorizontal(Tictactoe.PLAYERX) != 3) {
-
+        int result = checkPossibleHorizontal(Tictactoe.PLAYERX);
+        if (result != INVALID) {
+            //block win on given row
+            playRow(result);
+            return true;
         }
-
-        if (checkPossibleVertical(Tictactoe.PLAYERX) != 3) {
-
+           
+        result = checkPossibleVertical(Tictactoe.PLAYERX);
+        if (result != INVALID) {
+            //block win on ginven column
+            playCol(result);
+            return true;
         }
         if (checkPossibleDiagonal(Tictactoe.PLAYERX) == true) {
 
@@ -98,15 +115,17 @@ public class Board {
         if (checkPossibleOtherDiagonal(Tictactoe.PLAYERX) == true) {
 
         }
-        return true;
+        return false;
     }
-
+    
+    
+    //check to see if computer can win
     public boolean checkPosibleO() {
-        if (checkPossibleHorizontal(Tictactoe.PLAYERO) != 3) {
+        if (checkPossibleHorizontal(Tictactoe.PLAYERO) != INVALID) {
 
         }
 
-        if (checkPossibleVertical(Tictactoe.PLAYERO) != 3) {
+        if (checkPossibleVertical(Tictactoe.PLAYERO) != INVALID) {
 
         }
         if (checkPossibleDiagonal(Tictactoe.PLAYERO) == true) {
