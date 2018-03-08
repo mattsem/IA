@@ -237,6 +237,7 @@ public class Board {
         for (int col = 0; col < 3; col++) {
             if (boardState[col] == Tictactoe.PLAYERX && boardState[col + 3] == Tictactoe.PLAYERX && boardState[col + 6] == Tictactoe.PLAYERX) {
                 columnWin = Tictactoe.PLAYERX;
+                
             }
         }
         for (int col = 0; col < 3; col++) {

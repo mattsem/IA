@@ -6,6 +6,7 @@
 package tictactoe;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -101,7 +102,21 @@ public class BoardVisuals extends javax.swing.JPanel {
     }
     //outline winning buttons colors
     public void setButtonOutline(int board, int boardSpace){
-        buttons[board * 9 + boardSpace].setBackground(Color.black);
+        buttons[board * 9 + boardSpace].setBorder(BorderFactory.createLineBorder(Color.yellow, 2));
+    }
+    
+    public void setBoardButtonOutline(int board, char player){
+        if(player == 'X'){
+        for (int i = 9 * board; i < 9 * board + 9; i++) {
+                buttons[i].setBorder(BorderFactory.createLineBorder(Color.yellow, 2));
+            }
+        }
+        if(player == 'O'){
+        for (int i = 9 * board; i < 9 * board + 9; i++) {
+                buttons[i].setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2));
+            }
+        }
+        
     }
 
     public void setButtonColor(int board, int boardSpace, char player) {
