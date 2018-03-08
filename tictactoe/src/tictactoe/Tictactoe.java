@@ -110,7 +110,15 @@ public class Tictactoe extends javax.swing.JFrame {
     
     
     
-    public void computerMove(){
+    public void computerMove(int board){
+        if(globalBoard[board].checkPosibleO() == true){
+            return;
+        }
+        if(globalBoard[board].checkPossibleX() == true){
+            return;
+        }
+        globalBoard[board].playRandom();
+        
         
     }
 
@@ -173,6 +181,7 @@ public class Tictactoe extends javax.swing.JFrame {
     public void switchPlayer() {
         if (player == PLAYERX) {
             player = PLAYERO;
+          
             return;
         }
 

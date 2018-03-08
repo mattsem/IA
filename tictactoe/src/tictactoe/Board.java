@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package tictactoe;
-
+import java.util.Random;
 /**
  *
  * @author matts_000
@@ -89,6 +89,9 @@ public class Board {
     public void playRow(int row){
         for (int i = 0; i < 3; i++) {
             if(boardState[3*row + i] == Tictactoe.EMPTY){
+                boardState[3*row + i] = Tictactoe.PLAYERO;
+                
+                return;
                 
             }
         }
@@ -97,7 +100,9 @@ public class Board {
     public void playCol(int col){
         for (int i = 0; i < 3; i++) {
             if(boardState[col + 3 * i] == Tictactoe.EMPTY){
+                boardState[col + 3 * i] = Tictactoe.PLAYERO;
                 
+                return;
             }
         }
     }
@@ -105,7 +110,9 @@ public class Board {
     public void playRightDiag(){
         for (int i = 0; i < 3; i++) {
             if (boardState[4 * i] == Tictactoe.EMPTY) {
+                boardState[4 * i] = Tictactoe.PLAYERO;
                 
+                return;
             }
 
         }
@@ -114,7 +121,20 @@ public class Board {
     public void playLeftDiag(){
         for (int i = 0; i < 3; i++) {
             if (boardState[2 * i + 2] == Tictactoe.EMPTY) {
+                boardState[2 * i + 2] = Tictactoe.PLAYERO;
                 
+                return;
+            }
+        }
+    }
+    
+    public void playRandom(){
+        Random rand = new Random(9);
+        while(true){
+            int space = rand.nextInt();
+            if(validMove(space) == true){
+                boardState[space] = Tictactoe.PLAYERO;
+                return;
             }
         }
     }
@@ -135,10 +155,12 @@ public class Board {
             return true;
         }
         if (checkPossibleRightDiagonal(Tictactoe.PLAYERX) == true) {
-                playRightDiag();
+            playRightDiag();
+            return true;
         }
         if (checkPossibleLeftDiagonal(Tictactoe.PLAYERX) == true) {
-                playLeftDiag();
+            playLeftDiag();
+            return true;
         }
         return false;
     }
@@ -160,10 +182,12 @@ public class Board {
             return true;
         }
         if (checkPossibleRightDiagonal(Tictactoe.PLAYERO) == true) {
-                playRightDiag();
+            playRightDiag();
+            return true;
         }
         if (checkPossibleLeftDiagonal(Tictactoe.PLAYERO) == true) {
-                playLeftDiag();
+            playLeftDiag();
+            return true;
         }
         return false;
     }
