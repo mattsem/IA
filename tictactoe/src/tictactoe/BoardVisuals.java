@@ -63,7 +63,7 @@ public class BoardVisuals extends javax.swing.JPanel {
     public void myButtonActionPerformed(java.awt.event.ActionEvent evt) {
         MyButton btn = (MyButton) evt.getSource();
         if (parent.buttonClicked(btn.getBoard(), btn.getBoardSpace()) == true) {
-            btn.setText(Character.toString(parent.getPlayer()));
+            setButtonText(btn.getBoard(), btn.getBoardSpace());
             btn.setEnabled(false);
             parent.switchPlayer();
             if(parent.getOnePlayer() == true){
@@ -72,6 +72,10 @@ public class BoardVisuals extends javax.swing.JPanel {
         }
     }
 
+    public void setButtonText(int board, int space){
+            buttons[board * 9 + space].setText(Character.toString(parent.getPlayer()));
+    }
+    
     public void setButtonsColorWhite() {
         for (int i = 0; i < 81; i++) {
             buttons[i].setBackground(Color.white);

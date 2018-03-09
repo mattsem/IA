@@ -104,25 +104,30 @@ public class Tictactoe extends javax.swing.JFrame {
     
     
     public void computerMove(int board){
+        
         if(globalBoard[board].completeOToWin() == true){
+            switchPlayer();
             return;
         }
         if(globalBoard[board].blockX() == true){
+            switchPlayer();
             return;
         }
         int space = globalBoard[board].findRandomSpace();
         makeMove(board, space);
         switchPlayer();
         
+        
     }
 
     public void makeMove(int board, int boardSpace) {
         globalBoard[board].boardState[boardSpace] = player;
+        boardPanel.setButtonText(board, boardSpace);
         boardPanel.setButtonColor(board, boardSpace, player);
         if (globalBoard[board].checkBoardWin() != EMPTY) {
 //                boardPanel.setBoardColor(board, globalBoard[board].checkBoardWin());
             boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
-
+            
             if (checkWin() != EMPTY) {
 //                    start(true);
 
