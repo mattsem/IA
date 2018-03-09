@@ -18,12 +18,21 @@ public class Tictactoe extends javax.swing.JFrame {
     private boolean onePlayer;
 
     Board[] globalBoard;
-//    int boardIndex;
+    public static int currentBoard;
     private char player;
     public static final char PLAYERX = 'X';
     public static final char PLAYERO = 'O';
     public static final char EMPTY = ' ';
 
+    
+    public void setCurrentBoard(int board){
+        currentBoard = board;
+    }
+    
+    public int getCurrentBoard(){
+        return currentBoard;
+    }
+    
     public void setPlayer(char player) {
         this.player = player;
     }
@@ -62,7 +71,7 @@ public class Tictactoe extends javax.swing.JFrame {
         this.setVisible(true);
 
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
-            globalBoard[boardIndex] = new Board();
+            globalBoard[boardIndex] = new Board(this);
         }
 
         boardPanel.setButtonsColorWhite();
@@ -82,26 +91,7 @@ public class Tictactoe extends javax.swing.JFrame {
         System.out.println(boardSpace);
 
         if (globalBoard[board].validMove(boardSpace) == true) {
-            globalBoard[board].boardState[boardSpace] = player;
-            boardPanel.setButtonColor(board, boardSpace, player);
-            if (globalBoard[board].checkBoardWin() != EMPTY) {
-//                boardPanel.setBoardColor(board, globalBoard[board].checkBoardWin());
-                boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
-                
-                if (checkWin() != EMPTY) {
-//                    start(true);
-                    System.out.println("Congrats" + checkWin());
-                    boardPanel.setButtonsColorWinner(checkWin());
-                    disableAllBoards();
-                }
-            }
-            
-            disableAllBoards();
-            if (globalBoard[boardSpace].checkBoardWin() == EMPTY) {
-                enableBoard(boardSpace);
-            } else {
-                enableAllBoards();
-            }
+            makeMove(board, boardSpace);
             
             return true;
         } else {
@@ -112,38 +102,49 @@ public class Tictactoe extends javax.swing.JFrame {
     
     
     
+    
     public void computerMove(int board){
-        if(globalBoard[board].checkPosibleO() == true){
+        if(globalBoard[board].completeOToWin() == true){
             return;
         }
-        if(globalBoard[board].checkPossibleX() == true){
+        if(globalBoard[board].blockX() == true){
             return;
         }
-        globalBoard[board].playRandom();
-        
+        int space = globalBoard[board].findRandomSpace();
+        makeMove(board, space);
+        switchPlayer();
         
     }
 
-//    public boolean makeMove(int localBoard, int localBoardSpace) {
-////        System.out.println("Where would you like to move?");
-////        Scanner sc = new Scanner(System.in);
-////        int localBoard = sc.nextInt();
-////        int localBoardSpace = sc.nextInt();
-//        
-//        
-//     
-//        if (globalBoard[localBoard].validMove(localBoardSpace) == true) {
-//            globalBoard[localBoard].boardState[localBoardSpace] = player;
-//            switchPlayer();
-//            disableAllBoards();
-//            enableBoard(localBoardSpace);
-//            return true;
-//        } else {
-//            System.out.println("Invalid move");
-//            return false;
-//        }
-//
-//    }
+    public void makeMove(int board, int boardSpace) {
+        globalBoard[board].boardState[boardSpace] = player;
+        boardPanel.setButtonColor(board, boardSpace, player);
+        if (globalBoard[board].checkBoardWin() != EMPTY) {
+//                boardPanel.setBoardColor(board, globalBoard[board].checkBoardWin());
+            boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
+
+            if (checkWin() != EMPTY) {
+//                    start(true);
+
+//To do: create endGame method
+                System.out.println("Congrats" + checkWin());
+                boardPanel.setButtonsColorWinner(checkWin());
+                disableAllBoards();
+//show menu button                 
+                return;
+            }
+        }
+
+        disableAllBoards();
+        if (globalBoard[boardSpace].checkBoardWin() == EMPTY) {
+            enableBoard(boardSpace);
+        } else {
+            enableAllBoards();
+        }
+
+    }
+    
+    
     public void showMenu() {
         menuPanel.setVisible(true);
         boardPanel.setVisible(false);
@@ -211,6 +212,7 @@ public class Tictactoe extends javax.swing.JFrame {
 
     public void enableBoard(int boardIndex) {
         globalBoard[boardIndex].enabled = true;
+        currentBoard = boardIndex;
 //        if(true == globalBoard[boardIndex].isFinished()){
 //            enableAllBoards();
 //        }

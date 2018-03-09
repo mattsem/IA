@@ -10,16 +10,18 @@ import java.util.Random;
  * @author matts_000
  */
 public class Board {
-
+    
+    private Tictactoe parent;
     char[] boardState;
     boolean enabled;
     private boolean finished;
     private static final int INVALID = 3;
     
 
-    public Board() {
+    public Board(Tictactoe parent) {
         boardState = new char[9];
         reset();
+        this.parent = parent;
     }
 
 //    public boolean isFinished(){
@@ -86,80 +88,80 @@ public class Board {
         return boardWin;
     }
     
-    public void playRow(int row){
+    public int findSpaceInRow(int row){
+        
         for (int i = 0; i < 3; i++) {
             if(boardState[3*row + i] == Tictactoe.EMPTY){
-                boardState[3*row + i] = Tictactoe.PLAYERO;
-                
-                return;
-                
+                return 3 * row + i;
             }
         }
+        return -1;
     }
     
-    public void playCol(int col){
+    public int findSpaceInCol(int col){
         for (int i = 0; i < 3; i++) {
             if(boardState[col + 3 * i] == Tictactoe.EMPTY){
-                boardState[col + 3 * i] = Tictactoe.PLAYERO;
-                
-                return;
+                return col + 3 * i;
             }
         }
+        return -1;
     }
     
-    public void playRightDiag(){
+    public int findRightDiag(){
         for (int i = 0; i < 3; i++) {
             if (boardState[4 * i] == Tictactoe.EMPTY) {
-                boardState[4 * i] = Tictactoe.PLAYERO;
-                
-                return;
+                return 4 * i;
             }
-
         }
+        return -1;
     }
     
-    public void playLeftDiag(){
+    public int findLeftDiag(){
         for (int i = 0; i < 3; i++) {
             if (boardState[2 * i + 2] == Tictactoe.EMPTY) {
-                boardState[2 * i + 2] = Tictactoe.PLAYERO;
-                
-                return;
+                return 2 * i + 2;
             }
         }
+        return -1;
     }
     
-    public void playRandom(){
-        Random rand = new Random(9);
+    public int findRandomSpace(){
+        Random rand = new Random();
+        
         while(true){
-            int space = rand.nextInt();
+            int space = Math.abs(rand.nextInt() % 9);
             if(validMove(space) == true){
-                boardState[space] = Tictactoe.PLAYERO;
-                return;
+                return space;
             }
         }
     }
 
     //check to see if computer can block a win
-    public boolean checkPossibleX() {
+    public boolean blockX() {
         int result = checkPossibleHorizontal(Tictactoe.PLAYERX);
         if (result != INVALID) {
             //block win on given row
-            playRow(result);
+            int space = findSpaceInRow(result);
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
            
         result = checkPossibleVertical(Tictactoe.PLAYERX);
         if (result != INVALID) {
             //block win on ginven column
-            playCol(result);
+            
+            int space = findSpaceInCol(result);
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
         if (checkPossibleRightDiagonal(Tictactoe.PLAYERX) == true) {
-            playRightDiag();
+            int space = findRightDiag();
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
         if (checkPossibleLeftDiagonal(Tictactoe.PLAYERX) == true) {
-            playLeftDiag();
+            int space = findLeftDiag();
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
         return false;
@@ -167,26 +169,30 @@ public class Board {
     
     
     //check to see if computer can win
-    public boolean checkPosibleO() {
+    public boolean completeOToWin() {
         int result = checkPossibleHorizontal(Tictactoe.PLAYERO);
         if (result != INVALID) {
             //block win on given row
-            playRow(result);
+            int space = findSpaceInRow(result);
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
            
         result = checkPossibleVertical(Tictactoe.PLAYERO);
         if (result != INVALID) {
             //block win on ginven column
-            playCol(result);
+            int space = findSpaceInCol(result);
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
         if (checkPossibleRightDiagonal(Tictactoe.PLAYERO) == true) {
-            playRightDiag();
+            int space = findRightDiag();
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
         if (checkPossibleLeftDiagonal(Tictactoe.PLAYERO) == true) {
-            playLeftDiag();
+            int space = findLeftDiag();
+            parent.makeMove(parent.getCurrentBoard(), space);
             return true;
         }
         return false;

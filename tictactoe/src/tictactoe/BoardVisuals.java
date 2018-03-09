@@ -66,6 +66,9 @@ public class BoardVisuals extends javax.swing.JPanel {
             btn.setText(Character.toString(parent.getPlayer()));
             btn.setEnabled(false);
             parent.switchPlayer();
+            if(parent.getOnePlayer() == true){
+                parent.computerMove(btn.getBoardSpace());
+            }
         }
     }
 
