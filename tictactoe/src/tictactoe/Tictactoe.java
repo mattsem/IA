@@ -141,8 +141,10 @@ public class Tictactoe extends javax.swing.JFrame {
         }
 
         disableAllBoards();
+        currentBoard = boardSpace;
         if (globalBoard[boardSpace].checkBoardWin() == EMPTY) {
             enableBoard(boardSpace);
+            
         } else {
             enableAllBoards();
         }
@@ -217,7 +219,7 @@ public class Tictactoe extends javax.swing.JFrame {
 
     public void enableBoard(int boardIndex) {
         globalBoard[boardIndex].enabled = true;
-        currentBoard = boardIndex;
+        
 //        if(true == globalBoard[boardIndex].isFinished()){
 //            enableAllBoards();
 //        }
