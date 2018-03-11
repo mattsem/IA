@@ -109,10 +109,12 @@ public class Tictactoe extends javax.swing.JFrame {
             switchPlayer();
             return;
         }
+        System.out.println("no win");
         if(globalBoard[board].blockX() == true){
             switchPlayer();
             return;
         }
+        System.out.println("no win or block found");
         int space = globalBoard[board].findRandomSpace();
         makeMove(board, space);
         switchPlayer();
