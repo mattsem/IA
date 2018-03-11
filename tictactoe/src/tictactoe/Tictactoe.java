@@ -48,6 +48,12 @@ public class Tictactoe extends javax.swing.JFrame {
     public boolean getOnePlayer() {
         return onePlayer;
     }
+    
+    public void resetAllBoards(){
+        for (int i = 0; i < 9; i++) {
+            globalBoard[i].reset();
+        }
+    }
 
     public Tictactoe() {
         // Set default close operation
@@ -137,6 +143,7 @@ public class Tictactoe extends javax.swing.JFrame {
                 System.out.println("Congrats" + checkWin());
                 boardPanel.setButtonsColorWinner(checkWin());
                 disableAllBoards();
+                boardPanel.setMenuButttonVisible();
 //show menu button                 
                 return;
             }

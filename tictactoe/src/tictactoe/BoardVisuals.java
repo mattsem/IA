@@ -7,6 +7,7 @@ package tictactoe;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -22,6 +23,7 @@ public class BoardVisuals extends javax.swing.JPanel {
      */
     public BoardVisuals(Tictactoe parent) {
         initComponents();
+        jButton1.setVisible(false);
         this.parent = parent;
         this.setSize(800, 800);
         buttons = new MyButton[81];
@@ -81,6 +83,12 @@ public class BoardVisuals extends javax.swing.JPanel {
             buttons[i].setBackground(Color.white);
         }
     }
+    
+    public void setButtonsText(){
+        for (int i = 0; i < 81; i++) {
+            buttons[i].setText(" ");
+        }
+    }
 
     public void setButtonsColorWinner(char player) {
         if (player == 'X') {
@@ -134,7 +142,16 @@ public class BoardVisuals extends javax.swing.JPanel {
             buttons[board * 9 + boardSpace].setBackground(Color.LIGHT_GRAY);
         }
     }
+    
+    public void resetButtonOutline(){
+        for (int i = 0; i < 81; i++) {
+            buttons[i].setBorder(BorderFactory.createEmptyBorder());
+        }
+    }
 
+    public void setMenuButttonVisible(){
+        jButton1.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,19 +161,44 @@ public class BoardVisuals extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+
+        jButton1.setText("Menu");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(350, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(723, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(52, 52, 52))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        parent.showMenu();
+        parent.resetAllBoards();
+        setButtonsColorWhite();
+        setButtonsText();
+        resetButtonOutline();
+    }//GEN-LAST:event_jButton1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
