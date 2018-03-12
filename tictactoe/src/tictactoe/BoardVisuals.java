@@ -195,6 +195,7 @@ public class BoardVisuals extends javax.swing.JPanel {
         setButtonsColorWhite();
         setButtonsText();
         resetButtonOutline();
+        parent.enableAllBoards();
     }//GEN-LAST:event_jButton1MouseClicked
 
 
