@@ -137,14 +137,7 @@ public class Tictactoe extends javax.swing.JFrame {
             boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
             
             if (checkWin() != EMPTY) {
-//                    start(true);
-
-//To do: create endGame method
-                System.out.println("Congrats" + checkWin());
-                boardPanel.setButtonsColorWinner(checkWin());
-                disableAllBoards();
-                boardPanel.setMenuButttonVisible();
-//show menu button                 
+                endGame();
                 return;
             }
         }
@@ -158,6 +151,12 @@ public class Tictactoe extends javax.swing.JFrame {
             enableAllBoards();
         }
 
+    }
+    
+    public void endGame(){
+        System.out.println("Congrats" + checkWin());
+        boardPanel.setButtonsColorWinner(checkWin());
+        boardPanel.setMenuButttonVisible();
     }
     
     
@@ -216,18 +215,21 @@ public class Tictactoe extends javax.swing.JFrame {
 //            if (globalBoard[boardIndex].finished == false) {
             globalBoard[boardIndex].enabled = true;
 //            }
-
+            boardPanel.setAllEnabledOutline();
         }
     }
 
     public void disableAllBoards() {
         for (int boardIndex = 0; boardIndex < 9; boardIndex++) {
             globalBoard[boardIndex].enabled = false;
+            
         }
+        boardPanel.resetButtonOutline();
     }
 
     public void enableBoard(int boardIndex) {
         globalBoard[boardIndex].enabled = true;
+        boardPanel.setEnabledOutline(boardIndex);
         
 //        if(true == globalBoard[boardIndex].isFinished()){
 //            enableAllBoards();

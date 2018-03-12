@@ -134,6 +134,19 @@ public class BoardVisuals extends javax.swing.JPanel {
         
     }
 
+    public void setEnabledOutline(int board){
+        for (int i = 9 * board; i < 9 * board + 9; i++) {
+            buttons[i].setBorder(BorderFactory.createLineBorder(Color.green, 2));
+        }
+    }
+    
+    public void setAllEnabledOutline(){
+        for (int i = 0; i < 81; i++) {
+            buttons[i].setBorder(BorderFactory.createLineBorder(Color.green, 2));
+        }
+    }
+    
+    
     public void setButtonColor(int board, int boardSpace, char player) {
         if (player == 'X') {
             buttons[board * 9 + boardSpace].setBackground(Color.DARK_GRAY);
