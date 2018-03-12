@@ -134,7 +134,7 @@ public class Tictactoe extends javax.swing.JFrame {
         boardPanel.setButtonColor(board, boardSpace, player);
         if (globalBoard[board].checkBoardWin() != EMPTY) {
             boardPanel.setBoardColor(board, globalBoard[board].checkBoardWin());
-            boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
+//            boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
             
             if (checkWin() != EMPTY) {
                 endGame();
@@ -157,6 +157,8 @@ public class Tictactoe extends javax.swing.JFrame {
         System.out.println("Congrats" + checkWin());
         boardPanel.setButtonsColorWinner(checkWin());
         boardPanel.setMenuButttonVisible();
+        disableAllBoards();
+        boardPanel.resetButtonOutline();
     }
     
     

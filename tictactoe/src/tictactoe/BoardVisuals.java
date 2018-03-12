@@ -89,6 +89,12 @@ public class BoardVisuals extends javax.swing.JPanel {
             buttons[i].setText(" ");
         }
     }
+    
+    public void enableAllButtons(){
+        for (int i = 0; i < 81; i++) {
+            buttons[i].setEnabled(true);
+        }
+    }
 
     public void setButtonsColorWinner(char player) {
         if (player == 'X') {
@@ -207,8 +213,9 @@ public class BoardVisuals extends javax.swing.JPanel {
         parent.resetAllBoards();
         setButtonsColorWhite();
         setButtonsText();
-        resetButtonOutline();
         parent.enableAllBoards();
+        enableAllButtons();
+        resetButtonOutline();
     }//GEN-LAST:event_jButton1MouseClicked
 
 
