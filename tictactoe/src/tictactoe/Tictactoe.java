@@ -16,6 +16,7 @@ public class Tictactoe extends javax.swing.JFrame {
     private BoardVisuals boardPanel;
     private MenuPanel menuPanel;
     private boolean onePlayer;
+    private boolean won;
 
     Board[] globalBoard;
     public static int currentBoard;
@@ -24,6 +25,15 @@ public class Tictactoe extends javax.swing.JFrame {
     public static final char PLAYERO = 'O';
     public static final char EMPTY = ' ';
 
+    
+    public boolean getWon(){
+        return won;
+    }
+    
+    public void setWon(boolean won){
+        this.won = won;
+    }
+    
     
     public void setCurrentBoard(int board){
         currentBoard = board;
@@ -58,8 +68,9 @@ public class Tictactoe extends javax.swing.JFrame {
     public Tictactoe() {
         // Set default close operation
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        player = PLAYERX;
+        
         globalBoard = new Board[9];
+        
 
         boardPanel = new BoardVisuals(this);
         menuPanel = new MenuPanel(this);
@@ -134,7 +145,7 @@ public class Tictactoe extends javax.swing.JFrame {
         boardPanel.setButtonColor(board, boardSpace, player);
         if (globalBoard[board].checkBoardWin() != EMPTY) {
             boardPanel.setBoardColor(board, globalBoard[board].checkBoardWin());
-//            boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
+            boardPanel.setBoardButtonOutline(board, globalBoard[board].checkBoardWin());
             
             if (checkWin() != EMPTY) {
                 endGame();
@@ -154,17 +165,20 @@ public class Tictactoe extends javax.swing.JFrame {
     }
     
     public void endGame(){
+        setWon(true);
         System.out.println("Congrats" + checkWin());
         boardPanel.setButtonsColorWinner(checkWin());
         boardPanel.setMenuButtonVisible(true);
-        disableAllBoards();
         boardPanel.resetButtonOutline();
+        disableAllBoards();
     }
     
     
     public void showMenu() {
         menuPanel.setVisible(true);
         boardPanel.setVisible(false);
+        setWon(false);
+        player = PLAYERX;
     }
 
     public void showBoard() {
