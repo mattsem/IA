@@ -156,7 +156,7 @@ public class Tictactoe extends javax.swing.JFrame {
     public void endGame(){
         System.out.println("Congrats" + checkWin());
         boardPanel.setButtonsColorWinner(checkWin());
-        boardPanel.setMenuButttonVisible();
+        boardPanel.setMenuButtonVisible(true);
         disableAllBoards();
         boardPanel.resetButtonOutline();
     }
@@ -170,6 +170,7 @@ public class Tictactoe extends javax.swing.JFrame {
     public void showBoard() {
         boardPanel.setVisible(true);
         menuPanel.setVisible(false);
+        boardPanel.setMenuButtonVisible(false);
     }
 
 //    public void start() {

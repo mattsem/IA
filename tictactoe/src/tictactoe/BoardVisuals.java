@@ -168,9 +168,11 @@ public class BoardVisuals extends javax.swing.JPanel {
         }
     }
 
-    public void setMenuButttonVisible(){
-        jButton1.setVisible(true);
+    public void setMenuButtonVisible(boolean b){
+        jButton1.setVisible(b);
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
