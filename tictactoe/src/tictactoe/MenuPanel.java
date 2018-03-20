@@ -33,20 +33,20 @@ public class MenuPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        onePlayerButton = new javax.swing.JButton();
+        twoPlayerButton = new javax.swing.JButton();
 
-        jButton1.setText("One-Player");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        onePlayerButton.setText("One-Player");
+        onePlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                onePlayerButtonMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Two-Player");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        twoPlayerButton.setText("Two-Player");
+        twoPlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                twoPlayerButtonMouseClicked(evt);
             }
         });
 
@@ -57,36 +57,36 @@ public class MenuPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(350, 350, 350)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                    .addComponent(twoPlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(onePlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addContainerGap(350, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(250, 250, 250)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(onePlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(200, 200, 200)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(twoPlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(250, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void onePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onePlayerButtonMouseClicked
         // TODO add your handling code here:
         parent.showBoard();
         parent.setOnePlayer(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_onePlayerButtonMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void twoPlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twoPlayerButtonMouseClicked
         // TODO add your handling code here:
         parent.showBoard();
         parent.setOnePlayer(false);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_twoPlayerButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton onePlayerButton;
+    private javax.swing.JButton twoPlayerButton;
     // End of variables declaration//GEN-END:variables
 }
