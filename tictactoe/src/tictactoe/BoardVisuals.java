@@ -16,14 +16,14 @@ import javax.swing.border.EmptyBorder;
 public class BoardVisuals extends javax.swing.JPanel {
 
     private Tictactoe parent;
-    MyButton buttons[];
+    private MyButton buttons[];
 
     /**
      * Creates new form BoardVisuals
      */
     public BoardVisuals(Tictactoe parent) {
         initComponents();
-        jButton1.setVisible(false);
+        menuButton.setVisible(false);
         this.parent = parent;
         this.setSize(800, 800);
         buttons = new MyButton[81];
@@ -169,7 +169,7 @@ public class BoardVisuals extends javax.swing.JPanel {
     }
 
     public void setMenuButtonVisible(boolean b){
-        jButton1.setVisible(b);
+        menuButton.setVisible(b);
     }
     
     
@@ -182,12 +182,12 @@ public class BoardVisuals extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        menuButton = new javax.swing.JButton();
 
-        jButton1.setText("Menu");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuButton.setText("Menu");
+        menuButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                menuButtonMouseClicked(evt);
             }
         });
 
@@ -197,19 +197,19 @@ public class BoardVisuals extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(350, 350, 350)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(350, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(723, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(menuButton)
                 .addGap(52, 52, 52))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void menuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuButtonMouseClicked
         // TODO add your handling code here:
         parent.showMenu();
         parent.resetAllBoards();
@@ -218,10 +218,10 @@ public class BoardVisuals extends javax.swing.JPanel {
         parent.enableAllBoards();
         enableAllButtons();
         resetButtonOutline();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_menuButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton menuButton;
     // End of variables declaration//GEN-END:variables
 }
