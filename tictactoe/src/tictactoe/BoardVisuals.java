@@ -28,13 +28,14 @@ public class BoardVisuals extends javax.swing.JPanel {
         this.setSize(800, 800);
         buttons = new MyButton[81];
         this.setBackground(Color.gray);
-        
 
         // add all the buttons!
 //        int index = 0;
         int boardNum;
         int boardSpace;
 
+        
+        //create all 81 buttons and get them layed out properly
         for (int boardRow = 0; boardRow < 3; boardRow++) {
             for (int boardCol = 0; boardCol < 3; boardCol++) {
                 for (int rows = 0; rows < 3; rows++) {
@@ -43,13 +44,13 @@ public class BoardVisuals extends javax.swing.JPanel {
                         boardSpace = 3 * rows + cols;
                         buttons[boardNum * 9 + boardSpace] = new MyButton(boardNum, boardSpace);
                         buttons[boardNum * 9 + boardSpace].setLocation(130 + boardCol * 175 + 55 * cols, 130 + boardRow * 175 + 55 * rows);
-//                        MyButton btn = new MyButton(boardNum, boardSpace);
+
                         this.add(buttons[boardNum * 9 + boardSpace]);
                         buttons[boardNum * 9 + boardSpace].setText(" ");
                         buttons[boardNum * 9 + boardSpace].setSize(50, 50);
 
-                        // TODO - set button position
 //                        btn.setLocation(130 + boardCol * 175 + 55 * cols, 130 + boardRow * 175 + 55 * rows);
+//adds the ability to respond to a click
                         buttons[boardNum * 9 + boardSpace].addActionListener(new java.awt.event.ActionListener() {
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 myButtonActionPerformed(evt);
@@ -62,40 +63,48 @@ public class BoardVisuals extends javax.swing.JPanel {
         }
     }
 
+    //if clicked, get the location and info and send to button clicked to decide if a move should be made
+    //if it is, disable the button and switch player
+    //if AI is on, signal computer move
     public void myButtonActionPerformed(java.awt.event.ActionEvent evt) {
         MyButton btn = (MyButton) evt.getSource();
         if (parent.buttonClicked(btn.getBoard(), btn.getBoardSpace()) == true) {
             setButtonText(btn.getBoard(), btn.getBoardSpace());
             btn.setEnabled(false);
             parent.switchPlayer();
-            if(parent.getOnePlayer() == true && parent.getWon() == false){
+            if (parent.getOnePlayer() == true && parent.getWon() == false) {
                 parent.computerMove(btn.getBoardSpace());
             }
         }
     }
 
-    public void setButtonText(int board, int space){
-            buttons[board * 9 + space].setText(Character.toString(parent.getPlayer()));
+    //change button appearence to show play
+    public void setButtonText(int board, int space) {
+        buttons[board * 9 + space].setText(Character.toString(parent.getPlayer()));
     }
-    
+
+    //reset button color
     public void setButtonsColorWhite() {
         for (int i = 0; i < 81; i++) {
             buttons[i].setBackground(Color.white);
         }
     }
-    
-    public void setButtonsText(){
+
+    //reset button text
+    public void setButtonsText() {
         for (int i = 0; i < 81; i++) {
             buttons[i].setText(" ");
         }
     }
+
     
-    public void enableAllButtons(){
+    public void enableAllButtons() {
         for (int i = 0; i < 81; i++) {
             buttons[i].setEnabled(true);
         }
     }
 
+    //if the game is won, change all buttons to show a victory
     public void setButtonsColorWinner(char player) {
         if (player == 'X') {
             for (int i = 0; i < 81; i++) {
@@ -109,6 +118,7 @@ public class BoardVisuals extends javax.swing.JPanel {
         }
     }
 
+    //when a player wins a board, change the appearence to show that
     public void setBoardColor(int board, char player) {
         if (player == 'X') {
             for (int i = 9 * board; i < 9 * board + 9; i++) {
@@ -121,38 +131,42 @@ public class BoardVisuals extends javax.swing.JPanel {
             }
         }
     }
-    //outline winning buttons colors
-    public void setButtonOutline(int board, int boardSpace){
+
+    //outline winning buttons colors, unused
+    public void setButtonOutline(int board, int boardSpace) {
         buttons[board * 9 + boardSpace].setBorder(BorderFactory.createLineBorder(Color.yellow, 2));
     }
-    
-    public void setBoardButtonOutline(int board, char player){
-        if(player == 'X'){
-        for (int i = 9 * board; i < 9 * board + 9; i++) {
+
+    //outline the won boards, unused
+    public void setBoardButtonOutline(int board, char player) {
+        if (player == 'X') {
+            for (int i = 9 * board; i < 9 * board + 9; i++) {
                 buttons[i].setBorder(BorderFactory.createLineBorder(Color.yellow, 2));
             }
         }
-        if(player == 'O'){
-        for (int i = 9 * board; i < 9 * board + 9; i++) {
+        if (player == 'O') {
+            for (int i = 9 * board; i < 9 * board + 9; i++) {
                 buttons[i].setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2));
             }
         }
-        
+
     }
 
-    public void setEnabledOutline(int board){
+    //if the board is enabled, outline it
+    public void setEnabledOutline(int board) {
         for (int i = 9 * board; i < 9 * board + 9; i++) {
             buttons[i].setBorder(BorderFactory.createLineBorder(Color.black, 2));
         }
     }
-    
-    public void setAllEnabledOutline(){
+
+    //if all boards are enabled, outline them all
+    public void setAllEnabledOutline() {
         for (int i = 0; i < 81; i++) {
             buttons[i].setBorder(BorderFactory.createLineBorder(Color.black, 2));
         }
     }
-    
-    
+
+    //when a button is clicked, and its valid change its color
     public void setButtonColor(int board, int boardSpace, char player) {
         if (player == 'X') {
             buttons[board * 9 + boardSpace].setBackground(Color.DARK_GRAY);
@@ -161,18 +175,19 @@ public class BoardVisuals extends javax.swing.JPanel {
             buttons[board * 9 + boardSpace].setBackground(Color.LIGHT_GRAY);
         }
     }
-    
-    public void resetButtonOutline(){
+
+    //get rid of all outline
+    public void resetButtonOutline() {
         for (int i = 0; i < 81; i++) {
             buttons[i].setBorder(BorderFactory.createEmptyBorder());
         }
     }
 
-    public void setMenuButtonVisible(boolean b){
+    //show the menu button
+    public void setMenuButtonVisible(boolean b) {
         menuButton.setVisible(b);
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
